@@ -1,0 +1,23 @@
+{
+  "name": "aikova-receptionist",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AIKOVA Receptionist — marketing web, mobile, and API",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "web": "npm run dev --workspace=web",
+    "web:build": "npm run build --workspace=web",
+    "mobile": "npm run start --workspace=mobile",
+    "mobile:ios": "npm run ios --workspace=mobile",
+    "mobile:android": "npm run android --workspace=mobile",
+    "server": "npm run start --prefix server",
+    "server:dev": "npm run dev --prefix server",
+    "deploy": "bash scripts/deploy-vps.sh",
+    "dev": "npm run web"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
