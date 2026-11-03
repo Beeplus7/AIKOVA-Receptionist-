@@ -469,6 +469,19 @@ function Badge({ pct, status }: { pct: number; status: Status }) {
   )
 }
 
+type LiveProviders = {
+  openai?: string
+  elevenlabs?: string
+  coqui?: string
+  africas_talking?: string
+  twilio?: string
+  supabase?: string
+  stripe?: string
+  voicePass?: boolean
+  checkedAt?: string
+  hint?: string
+}
+
 export default function ProductionReadinessPage() {
   const [region, setRegion] = useState<Region>('full')
   const [expanded, setExpanded] = useState<Record<string, boolean>>({
@@ -480,8 +493,28 @@ export default function ProductionReadinessPage() {
   const [newNote, setNewNote] = useState('')
   const [busy, setBusy] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
+  const [live, setLive] = useState<LiveProviders | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
   const scannedAt = useMemo(() => new Date().toISOString(), [])
+
+  useEffect(() => {
+    let cancelled = false
+    const load = async () => {
+      try {
+        const res = await fetch('/api/readiness')
+        const j = (await res.json()) as LiveProviders
+        if (!cancelled) setLive(j)
+      } catch {
+        if (!cancelled) setLive({ hint: 'Could not reach /api/readiness' })
+      }
+    }
+    void load()
+    const t = window.setInterval(load, 30000)
+    return () => {
+      cancelled = true
+      window.clearInterval(t)
+    }
+  }, [])
 
   async function api(action: string, args: unknown) {
     const res = await fetch('/actions', {
@@ -701,9 +734,49 @@ export default function ProductionReadinessPage() {
                 <Link to="/try" className="rounded-full border border-[#E2E8F0] bg-white px-3 py-1.5 font-semibold hover:border-slate-400">
                   Open try desk →
                 </Link>
+                <Link to="/trials" className="rounded-full border border-[#E2E8F0] bg-white px-3 py-1.5 font-semibold hover:border-slate-400">
+                  5 trial templates →
+                </Link>
                 <a href="/readiness.html" className="rounded-full border border-[#E2E8F0] bg-white px-3 py-1.5 font-semibold hover:border-slate-400">
                   Crawler HTML snapshot
                 </a>
+              </div>
+
+              <div className="mt-5 rounded-3xl border border-[#E2E8F0] bg-white p-4 shadow-sm">
+                <div className="flex items-center justify-between gap-2 flex-wrap">
+                  <div className="text-[11px] font-bold tracking-widest uppercase text-[#64748B]">Live /api/readiness</div>
+                  <span className="text-[10px] text-slate-400">{live?.checkedAt ? new Date(live.checkedAt).toLocaleTimeString() : '…'}</span>
+                </div>
+                <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {(
+                    [
+                      ['openai', live?.openai],
+                      ['elevenlabs', live?.elevenlabs],
+                      ['africas_talking', live?.africas_talking],
+                      ['twilio', live?.twilio],
+                      ['supabase', live?.supabase],
+                      ['stripe', live?.stripe],
+                      ['coqui', live?.coqui],
+                      ['voicePass', live?.voicePass ? 'ok' : 'missing'],
+                    ] as [string, string | undefined][]
+                  ).map(([k, v]) => {
+                    const ok = v === 'ok' || v === 'test' || v === 'live'
+                    return (
+                      <div key={k} className={`rounded-xl border px-2.5 py-2 ${ok ? 'border-emerald-200 bg-emerald-50' : 'border-amber-200 bg-amber-50'}`}>
+                        <div className="text-[10px] font-bold uppercase tracking-wide text-slate-500">{k}</div>
+                        <div className={`text-[13px] font-extrabold ${ok ? 'text-emerald-800' : 'text-amber-800'}`}>{v || '…'}</div>
+                      </div>
+                    )
+                  })}
+                </div>
+                {!live?.voicePass ? (
+                  <p className="mt-3 text-[11px] text-amber-800 leading-4">
+                    {live?.hint || 'API key not configured - check /readiness'} — set OPENAI + (ELEVENLABS or COQUI) on VPS <code>.env</code> and{' '}
+                    <code>supabase secrets set</code>, then refresh. Twilio already green when SID/TOKEN present.
+                  </p>
+                ) : (
+                  <p className="mt-3 text-[11px] text-emerald-800 font-semibold">Voice PASS stack looks configured.</p>
+                )}
               </div>
               <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {[

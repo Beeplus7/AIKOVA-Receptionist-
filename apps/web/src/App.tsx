@@ -6,6 +6,8 @@ import CompanionGuideHost from './components/companion/CompanionGuideHost'
 import TryNowFloater from './components/try/TryNowFloater'
 import AuthGate from './components/auth/AuthGate'
 import TryNowPage from './pages/try/TryNowPage'
+import TrialsIndexPage from './pages/trials/TrialsIndexPage'
+import TrialCategoryPage from './pages/trials/TrialCategoryPage'
 import { RegionProvider, useRegion } from './context/RegionContext'
 import HomePage from './pages/home/HomePage'
 import FeaturesPage from './pages/features/FeaturesPage'
@@ -134,6 +136,8 @@ export default function App() {
 
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/try" element={<TryNowPage />} />
+        <Route path="/trials" element={<TrialsIndexPage />} />
+        <Route path="/trials/:category" element={<TrialCategoryPage />} />
 
         <Route path="/app" element={<Navigate to="/app/inbox" replace />} />
         <Route

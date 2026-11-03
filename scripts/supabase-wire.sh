@@ -33,7 +33,8 @@ for fn in \
   social-auto-dm \
   handoff-waterfall \
   billing-usage \
-  instant-try-call
+  instant-try-call \
+  readiness-check
 do
   echo "--- $fn"
   supabase functions deploy "$fn" --no-verify-jwt

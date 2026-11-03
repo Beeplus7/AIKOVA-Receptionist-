@@ -153,6 +153,95 @@ app.get('/health', (_req, res) => {
   })
 })
 
+function envFlag(...keys) {
+  return keys.some((k) => Boolean(String(process.env[k] || '').trim()))
+}
+
+function stripeMode() {
+  const key = process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET || ''
+  if (!key) return 'missing'
+  if (key.startsWith('sk_live')) return 'live'
+  if (key.startsWith('sk_test')) return 'test'
+  return 'ok'
+}
+
+/** Live readiness JSON for /readiness page + Meta/ops */
+app.get('/api/readiness', async (_req, res) => {
+  const openai = envFlag('OPENAI_API_KEY')
+  const elevenlabs = envFlag('ELEVENLABS_API_KEY')
+  const coqui = envFlag('COQUI_TTS_URL')
+  const africasTalking = envFlag('AFRICAS_TALKING_API_KEY', 'AFRICASTALKING_API_KEY')
+  const twilio = envFlag('TWILIO_ACCOUNT_SID') && envFlag('TWILIO_AUTH_TOKEN')
+  const supabase = Boolean(SUPABASE_URL && SUPABASE_ANON)
+  const stripe = stripeMode()
+
+  let edge = null
+  try {
+    if (SUPABASE_URL && SUPABASE_ANON) {
+      const r = await fetch(`${SUPABASE_URL}/functions/v1/readiness-check`, {
+        headers: { Authorization: `Bearer ${SUPABASE_ANON}`, apikey: SUPABASE_ANON },
+      })
+      edge = await r.json().catch(() => null)
+    }
+  } catch {
+    edge = { ok: false, error: 'edge probe failed' }
+  }
+
+  const merge = (serverVal, edgeKey) => {
+    const e = edge?.providers?.[edgeKey]
+    if (e === 'ok' || serverVal === 'ok' || serverVal === true) return 'ok'
+    if (typeof serverVal === 'string' && serverVal !== 'missing') return serverVal
+    return e || (serverVal ? 'ok' : 'missing')
+  }
+
+  const payload = {
+    openai: merge(openai, 'openai'),
+    elevenlabs: merge(elevenlabs, 'elevenlabs'),
+    coqui: merge(coqui, 'coqui'),
+    africas_talking: merge(africasTalking, 'africas_talking'),
+    twilio: merge(twilio, 'twilio'),
+    supabase: supabase ? 'ok' : 'missing',
+    stripe,
+    edge: edge?.providers || null,
+    voicePass: Boolean(
+      (openai || edge?.providers?.openai === 'ok') &&
+        (twilio || edge?.providers?.twilio === 'ok') &&
+        (elevenlabs || coqui || edge?.providers?.elevenlabs === 'ok' || edge?.providers?.coqui === 'ok'),
+    ),
+    hint: 'API key not configured - check /readiness',
+    checkedAt: new Date().toISOString(),
+    host: 'vps',
+  }
+  res.json(payload)
+})
+
+app.post('/api/trial-request', (req, res) => {
+  try {
+    const { name, email, phone, business, category, message, linkedinTag } = req.body || {}
+    if (!email && !phone) {
+      return res.status(400).json({ error: 'email or phone required' })
+    }
+    const row = createRecord('trial_requests', {
+      name: name || '',
+      email: email || '',
+      phone: phone || '',
+      business: business || '',
+      category: category || '',
+      message: message || '',
+      linkedinTag: linkedinTag || '',
+      created: new Date().toISOString(),
+      source: 'trials',
+    })
+    return res.json({
+      ok: true,
+      id: row?.id,
+      next: `DM PILOT + ${linkedinTag || category || 'AIKOVA'} on LinkedIn`,
+    })
+  } catch (err) {
+    return res.status(err.status || 500).json({ error: err.message || 'trial request failed' })
+  }
+})
+
 app.post('/api/create-akc-checkout', (req, res) => void createAkcCheckout(req, res))
 
 app.post('/auth/google', async (req, res) => {

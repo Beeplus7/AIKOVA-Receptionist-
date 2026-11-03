@@ -73,6 +73,7 @@ Deno.serve(async (req) => {
       sources: sources.map((s) => s.title),
       latency_ms: Date.now() - started,
       region: body.region ?? 'full',
+      hint: liveLlm ? undefined : 'API key not configured - check /readiness',
     }
     return json(payload)
   } catch (e) {

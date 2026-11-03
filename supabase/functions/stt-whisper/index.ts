@@ -33,9 +33,12 @@ Deno.serve(async (req) => {
       transcript,
       latency_ms: Date.now() - started,
       region: body.region ?? 'full',
-      note: live ? 'OPENAI present — wire Whisper multipart next' : 'Mock transcript (OPENAI_API_KEY missing)',
+      note: live
+        ? 'OPENAI present — wire Whisper multipart next'
+        : 'API key not configured - check /readiness',
+      error: live ? undefined : 'API key not configured - check /readiness',
     }
-    return json(payload)
+    return json(payload, live ? 200 : 503)
   } catch (e) {
     return json({ ok: false, error: e instanceof Error ? e.message : String(e) }, 500)
   }

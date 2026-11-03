@@ -31,9 +31,12 @@ Deno.serve(async (req) => {
       mirroring_sec: 3,
       latency_ms: Date.now() - started,
       region,
-      note: 'TTS keys missing — UI can show placeholder until ELEVENLABS or COQUI_TTS_URL set',
+      note: liveEu || liveAf
+        ? undefined
+        : 'API key not configured - check /readiness',
+      error: liveEu || liveAf ? undefined : 'API key not configured - check /readiness',
     }
-    return json(payload)
+    return json(payload, liveEu || liveAf ? 200 : 503)
   } catch (e) {
     return json({ ok: false, error: e instanceof Error ? e.message : String(e) }, 500)
   }

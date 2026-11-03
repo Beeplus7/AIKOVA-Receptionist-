@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "name": "aikova-receptionist",
+  "buildCommand": "cd apps/web && npm run build",
+  "outputDirectory": "apps/web/dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+    }
+  ],
+  "_comment": "Production traffic for ai-receptionist.aikova.co.uk is VPS (nginx+pm2), not Vercel. Use this file only for optional preview hosting. Secrets live in VPS .env + supabase secrets — never commit keys."
+}
