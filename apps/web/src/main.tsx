@@ -12,7 +12,12 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 
-// Remove crawler HTML fallback once the SPA is mounted (keeps Meta/OG source readable pre-JS)
+// Keep crawler text in the DOM (visually hide only). Meta AI / bots that execute JS
+// still retain readable copy if they land on the SPA instead of home.html.
 queueMicrotask(() => {
-  document.getElementById('aikova-seo-fallback')?.remove()
+  const el = document.getElementById('aikova-seo-fallback')
+  if (!el) return
+  el.setAttribute('aria-hidden', 'true')
+  el.style.cssText =
+    'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;'
 })

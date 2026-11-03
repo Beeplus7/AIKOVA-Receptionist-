@@ -1,0 +1,20 @@
+# AiKOVA Receptionist
+
+> AI receptionist for UK, Europe and Africa. Answers phone and WhatsApp, books appointments, sends payment links. Try before register.
+
+## Site
+- Home: https://ai-receptionist.aikova.co.uk/
+- UK/EU marketing: https://ai-receptionist.aikova.co.uk/eu
+- Try without signup: https://ai-receptionist.aikova.co.uk/try
+- Pricing: https://ai-receptionist.aikova.co.uk/eu/pricing
+- Get started: https://ai-receptionist.aikova.co.uk/get-started
+- Readiness: https://ai-receptionist.aikova.co.uk/readiness
+- Crawler home snapshot: https://ai-receptionist.aikova.co.uk/home.html
+- Crawler readiness snapshot: https://ai-receptionist.aikova.co.uk/readiness.html
+
+## Summary
+AiKOVA (ai-receptionist.aikova.co.uk) is a multilingual AI receptionist for local businesses (restaurants, clinics, salons, retail, professional services). It handles voice and messaging, bookings, FAQs and payments (Stripe UK/EU; Paystack/M-Pesa Africa). GDPR-ready in UK/EU; NDPR-ready in Africa. Public try desk at /try needs no account.
+
+## Optional
+- Sitemap: https://ai-receptionist.aikova.co.uk/sitemap.xml
+- Robots: https://ai-receptionist.aikova.co.uk/robots.txt

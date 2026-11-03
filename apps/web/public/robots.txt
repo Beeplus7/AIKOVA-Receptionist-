@@ -19,6 +19,15 @@ Allow: /
 User-agent: Meta-ExternalFetcher
 Allow: /
 
+User-agent: meta-webindexer
+Allow: /
+
+User-agent: Instagram
+Allow: /
+
+User-agent: ThreadsBot
+Allow: /
+
 User-agent: Twitterbot
 Allow: /
 
@@ -31,4 +40,10 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
+User-agent: Googlebot
+Allow: /
+
 Sitemap: https://ai-receptionist.aikova.co.uk/sitemap.xml
+
+# Helpful plain-text summary for AI systems
+# https://ai-receptionist.aikova.co.uk/llms.txt
