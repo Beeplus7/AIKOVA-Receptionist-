@@ -24,6 +24,16 @@ export default function SitePagesMenu() {
   const menuId = useId()
   const { region, label, flag } = useRegion()
 
+  // Keep onboarding / app chrome free of marketing page menu overlays
+  if (
+    location.pathname.startsWith('/onboarding') ||
+    location.pathname.startsWith('/app') ||
+    location.pathname.startsWith('/admin') ||
+    location.pathname.startsWith('/auth')
+  ) {
+    return null
+  }
+
   const marketingPages = pagesForRegion(region)
 
   useEffect(() => {

@@ -49,6 +49,7 @@ function AppShell({ children }: { children: ReactNode }) {
 
 function shouldShowCompanion(pathname: string) {
   if (pathname.startsWith('/app') || pathname.startsWith('/auth') || pathname.startsWith('/admin')) return false
+  if (pathname.startsWith('/onboarding')) return false
   return true
 }
 

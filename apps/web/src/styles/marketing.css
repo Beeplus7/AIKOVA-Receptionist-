@@ -742,6 +742,17 @@ body{ background: var(--bg); color: var(--text); overflow-x: clip; }
   background: #e6ebf4;
 }
 
+/* Keep step pills + bottom confirm chrome from covering iframe controls */
+.eu-artefact--onboarding {
+  top: 44px;
+  bottom: 92px;
+  z-index: 20;
+}
+
+.eu-artefact--onboarding .eu-artefact__frame {
+  height: 100%;
+}
+
 
 /* ========================================================================== */
 /* eurozone — unique extras from /tmp/aikova-eu page index.css files          */
