@@ -9,8 +9,13 @@
 - Pricing: https://ai-receptionist.aikova.co.uk/eu/pricing
 - Get started: https://ai-receptionist.aikova.co.uk/get-started
 - Readiness: https://ai-receptionist.aikova.co.uk/readiness
-- Crawler home snapshot: https://ai-receptionist.aikova.co.uk/home.html
-- Crawler readiness snapshot: https://ai-receptionist.aikova.co.uk/readiness.html
+- Trials index: https://ai-receptionist.aikova.co.uk/trials
+- Estate agents: https://ai-receptionist.aikova.co.uk/trials/estate-agents
+- Trades: https://ai-receptionist.aikova.co.uk/trials/trades
+- Clinics: https://ai-receptionist.aikova.co.uk/trials/clinics
+- Restaurants: https://ai-receptionist.aikova.co.uk/trials/restaurants
+- Salons: https://ai-receptionist.aikova.co.uk/trials/salons
+- Crawler snapshots: /home.html /readiness.html /try.html /trials.html /trials-*.html
 
 ## Summary
 AiKOVA (ai-receptionist.aikova.co.uk) is a multilingual AI receptionist for local businesses (restaurants, clinics, salons, retail, professional services). It handles voice and messaging, bookings, FAQs and payments (Stripe UK/EU; Paystack/M-Pesa Africa). GDPR-ready in UK/EU; NDPR-ready in Africa. Public try desk at /try needs no account.
