@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import logoUrl from "./assets/32d4f05ae5209978-image_6A9BA612-7186-480D-9D5C-7EF8BE2260B7.jpeg";
+import AkcTierStrip from '../../components/AkcTierStrip';
+import { startSetupUrl, signInUrl } from '../../lib/setupFlow';
 
 const navLinks = [
   { label: 'Features', href: '/features' },
@@ -72,8 +74,8 @@ export default function HomePage() {
             </nav>
 
             <div className="hidden lg:flex items-center gap-3">
-              <a href="#demo" className="text-[13.5px] font-medium px-4 py-2">Sign in</a>
-              <a href="#cta" className="px-5 py-2.5 rounded-full text-[13.5px] font-bold text-white shadow-[0_8px_20px_rgba(41,98,255,0.25)]" style={{ background: 'var(--gradient)' }}>
+              <a href={signInUrl('africa')} className="text-[13.5px] font-medium px-4 py-2">Sign in</a>
+              <a href={startSetupUrl('africa')} className="px-5 py-2.5 rounded-full text-[13.5px] font-bold text-white shadow-[0_8px_20px_rgba(41,98,255,0.25)]" style={{ background: 'var(--gradient)' }}>
                 Start Free Trial
               </a>
             </div>
@@ -92,7 +94,7 @@ export default function HomePage() {
               {navLinks.map(l => (
                 <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="block py-2 text-[14px] font-medium">{l.label}</a>
               ))}
-              <a href="#cta" className="block text-center mt-2 px-5 py-3 rounded-full text-[14px] font-bold text-white" style={{ background: 'var(--gradient)' }}>Start Free Trial</a>
+              <a href={startSetupUrl('africa')} className="block text-center mt-2 px-5 py-3 rounded-full text-[14px] font-bold text-white" style={{ background: 'var(--gradient)' }}>Start Free Trial</a>
             </div>
           )}
         </div>
@@ -128,13 +130,34 @@ export default function HomePage() {
               </p>
 
               <div className="reveal reveal-delay-3 mt-8 flex flex-wrap gap-3">
-                <a href="#demo" className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-bold text-white shadow-[0_12px_28px_rgba(41,98,255,0.3)] transition hover:translate-y-[-1px]" style={{ background: 'var(--gradient)' }}>
-                  Try Live Demo
-                  <span className="transition group-hover:translate-x-0.5">→</span>
+                <a
+                  href={startSetupUrl('africa')}
+                  id="assess-button-main-hero"
+                  className="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-bold text-white shadow-[0_12px_28px_rgba(41,98,255,0.3)] transition hover:translate-y-[-1px] overflow-hidden"
+                  style={{ background: 'var(--gradient)', animation: 'pulseGlow 2.8s infinite' }}
+                >
+                  <span className="absolute inset-0 rounded-full pulse-ring border border-white/40 pointer-events-none" />
+                  <span className="relative">Assess Your Business</span>
+                  <span className="relative transition group-hover:translate-x-0.5">→</span>
                 </a>
-                <a href="#road" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-semibold border border-slate-200 bg-white hover:bg-slate-50 transition">
-                  <span className="w-8 h-8 rounded-full grid place-items-center bg-slate-900 text-white text-[12px]">▶</span>
-                  Watch 45s Overview
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new Event('aikova:try-now'))}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-semibold bg-[#0F172A] text-white hover:bg-[#1E293B] transition"
+                >
+                  <span className="h-6 w-6 rounded-full grid place-items-center text-[12px] font-black text-[#0F172A]" style={{ background: 'linear-gradient(102deg,#00E5FF,#2962FF,#76FF03)' }}>▶</span>
+                  Try now — no signup
+                </button>
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new Event('aikova:try-call'))}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-semibold border border-slate-200 bg-white hover:bg-slate-50 transition"
+                >
+                  <span className="h-6 w-6 rounded-full bg-[#0F172A] text-white grid place-items-center text-[12px]">📞</span>
+                  Voice call trial
+                </button>
+                <a href="#demo" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-semibold border border-slate-200 bg-white hover:bg-slate-50 transition">
+                  Try Live Demo
                 </a>
               </div>
 
@@ -600,7 +623,7 @@ export default function HomePage() {
                   <p className="mt-3 text-[14px] sm:text-[15px] leading-[1.5] text-white/80 max-w-[480px]">Plug in your website, Google Business, or menu. Go live in 10 mins. Free 14-day trial, no card.</p>
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  <a href="#demo" className="px-6 py-3.5 rounded-full bg-white text-slate-900 text-[14px] font-bold shadow-[0_10px_24px_rgba(0,0,0,0.15)] hover:translate-y-[-1px] transition">Start Free Trial →</a>
+                  <a href={startSetupUrl('africa')} className="px-6 py-3.5 rounded-full bg-white text-slate-900 text-[14px] font-bold shadow-[0_10px_24px_rgba(0,0,0,0.15)] hover:translate-y-[-1px] transition">Start Free Trial →</a>
                   <a href="#road" className="px-6 py-3.5 rounded-full bg-slate-900/20 backdrop-blur border border-white/20 text-white text-[14px] font-semibold hover:bg-slate-900/30 transition">Talk to Founder</a>
                 </div>
               </div>
@@ -619,6 +642,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <div className="border-t border-slate-100 bg-[#F8FAFC]">
+        <AkcTierStrip />
+      </div>
 
       {/* FOOTER */}
       <footer className="border-t border-slate-100 bg-white">

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import logoUrl from "./assets/32d4f05ae5209978-image_6A9BA612-7186-480D-9D5C-7EF8BE2260B7.jpeg";
+import { startSetupUrl } from "../../lib/setupFlow";
 import {
   Inbox,
   Brain,
@@ -187,15 +188,13 @@ export default function FeaturesPage() {
               Watch demo
             </a>
             <a
-              href="/get-started"
+              href={startSetupUrl("africa")}
               className="rounded-full bg-slate-900 px-5 py-[10px] text-[13px] font-bold text-white shadow-[0_8px_20px_rgba(15,23,42,0.15)] transition hover:translate-y-[-1px] md:hidden lg:inline-flex"
               style={{ background: "linear-gradient(90deg,#00E5FF 0%,#2962FF 50%,#1A237E 100%)" }}
             >
               Start free trial
             </a>
-            <button className="rounded-full bg-slate-900 px-5 py-[10px] text-[13px] font-bold text-white shadow-[0_8px_20px_rgba(15,23,42,0.15)] transition hover:translate-y-[-1px] hidden md:inline-flex lg:hidden" style={{ background: "linear-gradient(90deg,#00E5FF 0%,#2962FF 50%,#1A237E 100%)" }}>
-              Start free
-            </button>
+            <a href={startSetupUrl("africa")} className="rounded-full bg-slate-900 px-5 py-[10px] text-[13px] font-bold text-white shadow-[0_8px_20px_rgba(15,23,42,0.15)] transition hover:translate-y-[-1px] hidden md:inline-flex lg:hidden" style={{ background: "linear-gradient(90deg,#00E5FF 0%,#2962FF 50%,#1A237E 100%)" }}>Start free</a>
           </div>
         </div>
       </header>
@@ -757,7 +756,7 @@ export default function FeaturesPage() {
                   <p className="mt-3 max-w-[520px] text-[14px] leading-[1.6] text-white/80">Click through the interactive hero we built — voice, IG comment → DM → booking, accent mesh. 90 seconds and you'll get it.</p>
 
                   <div className="mt-7 flex flex-wrap gap-3">
-                    <a href="/get-started" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[14px] font-bold text-slate-900 shadow-[0_12px_24px_rgba(0,0,0,0.15)] transition hover:translate-y-[-1px]">
+                    <a href={startSetupUrl("africa")} className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[14px] font-bold text-slate-900 shadow-[0_12px_24px_rgba(0,0,0,0.15)] transition hover:translate-y-[-1px]">
                       <Play className="h-4 w-4 fill-slate-900" /> Open No.1 Hero
                     </a>
                     <a href="/business" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 text-[14px] font-bold text-white ring-1 ring-white/20 backdrop-blur transition hover:bg-white/15">

@@ -11,3 +11,8 @@ createRoot(document.getElementById('root')!).render(
     </BrowserRouter>
   </StrictMode>,
 )
+
+// Remove crawler HTML fallback once the SPA is mounted (keeps Meta/OG source readable pre-JS)
+queueMicrotask(() => {
+  document.getElementById('aikova-seo-fallback')?.remove()
+})

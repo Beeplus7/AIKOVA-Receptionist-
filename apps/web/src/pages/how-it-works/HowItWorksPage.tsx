@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import logoUrl from './assets/32d4f05ae5209978-image_6A9BA612-7186-480D-9D5C-7EF8BE2260B7.jpeg';
+import { startSetupUrl, signInUrl } from '../../lib/setupFlow';
 import connectImg from './assets/a501c1d2588177ef-image_20261029_180459.webp';
 import brainImg from './assets/f374648e1dde6765-image_20261029_180501.webp';
 import adeolaImg from './assets/3d41e02dd105029a-image_20261029_180508.webp';
@@ -69,8 +70,8 @@ export default function HowItWorksPage() {
             </nav>
           </div>
           <div className="flex items-center gap-3">
-            <a href="/get-started" className="hidden md:inline-flex text-[14px] font-semibold text-slate-700 hover:text-slate-900 px-4 py-2">Sign in</a>
-            <a href="/get-started" className="inline-flex items-center justify-center rounded-full text-white font-semibold text-[14px] px-5 py-2.5 shadow-[0_8px_20px_rgba(41,98,255,0.25)] gradient-road hover:opacity-95 transition">Start Free Trial</a>
+            <a href={signInUrl('africa')} className="hidden md:inline-flex text-[14px] font-semibold text-slate-700 hover:text-slate-900 px-4 py-2">Sign in</a>
+            <a href={startSetupUrl('africa')} className="inline-flex items-center justify-center rounded-full text-white font-semibold text-[14px] px-5 py-2.5 shadow-[0_8px_20px_rgba(41,98,255,0.25)] gradient-road hover:opacity-95 transition">Start Free Trial</a>
             <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden w-9 h-9 rounded-full border border-slate-200 grid place-items-center">
               <div className="space-y-1"><div className="w-4 h-0.5 bg-slate-800"/><div className="w-4 h-0.5 bg-slate-800"/><div className="w-4 h-0.5 bg-slate-800"/></div>
             </button>
@@ -437,7 +438,7 @@ export default function HowItWorksPage() {
               <p className="mt-3 text-[15px] text-slate-500 max-w-[460px]">Start free trial, no credit card. Adeola did — 70% fewer missed calls by tomorrow morning. Africa's Talking credits included.</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <a href="/get-started" className="inline-flex items-center justify-center rounded-full bg-slate-900 text-white px-7 py-3.5 text-[14px] font-semibold shadow-lg hover:bg-black transition">Start Now — Free</a>
+              <a href={startSetupUrl('africa')} className="inline-flex items-center justify-center rounded-full bg-slate-900 text-white px-7 py-3.5 text-[14px] font-semibold shadow-lg hover:bg-black transition">Start Now — Free</a>
               <a href="/business" className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-7 py-3.5 text-[14px] font-semibold text-slate-800 hover:bg-slate-50 transition">▶ Watch 45s Demo</a>
             </div>
           </div>

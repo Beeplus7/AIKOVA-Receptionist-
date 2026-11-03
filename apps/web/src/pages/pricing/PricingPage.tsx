@@ -4,6 +4,8 @@ import savingsWomanUrl from './assets/d856cb1172e957e9-image_20261029_181807.web
 import pricingInfographicUrl from './assets/0f83d47c38f52bd4-image_20261029_181810.webp';
 import teamCelebrationUrl from './assets/4e8a18e31ecbb13a-image_20261029_181811.webp';
 import comparisonUrl from './assets/97a7fad49cdb8340-image_20261029_181813.webp';
+import AkcTierStrip from '../../components/AkcTierStrip';
+import { startSetupUrl, signInUrl } from '../../lib/setupFlow';
 
 const shellStyle: React.CSSProperties = {
   boxSizing: 'border-box',
@@ -16,8 +18,9 @@ type FAQ = { q: string; a: string };
 const faqs: FAQ[] = [
   { q: "What counts as a conversation?", a: "One conversation = one customer call or chat handled end-to-end by AiKOVA, regardless of duration. No hidden per-minute fees. Up to 5 minutes included, then fair-use at $0.02/min." },
   { q: "Can I pay with M-Pesa, Flutterwave or Paystack?", a: "Yes. We support M-Pesa (KES), Flutterwave (NGN, GHS, ZAR), Paystack, bank transfer, and cards. Invoices in Naira, KES, Cedi or USD — you choose at checkout." },
-  { q: "What if I exceed my plan limits?", a: "We’ll notify you at 80%. You can upgrade instantly, no downtime. No overage penalties — you only pay the next tier prorated. Scale plan is unlimited by design." },
-  { q: "Is there a free trial?", a: "14-day free trial on Growth, no card required. Starter is free forever up to 100 customers. Includes onboarding in English, Swahili, Yoruba, Hausa, Igbo & Pidgin." },
+  { q: "What are AiKOVA Credits (AKC)?", a: "AKC is prepaid usage currency — like VisaGuide VGC. Plans allot monthly AKC (10k / 35k / 100k). Voice mins, SMS, storage, and voice clones debit your wallet. Anchor: 10,000 AKC ≈ $25. Buy reload packs anytime." },
+  { q: "What if I exceed my plan limits?", a: "We’ll notify you at 80% AKC. Reload a pack or upgrade — no downtime. Overage settles from your AKC wallet at published rates (e.g. 20 AKC/voice min)." },
+  { q: "Is there a free trial?", a: "Yes — 5,000 AKC welcome trial for 14 days, no card required. Includes onboarding in English, Swahili, Yoruba, Hausa, Igbo & Pidgin." },
   { q: "Do you support Yoruba, Igbo, Swahili?", a: "Yes — 12 African languages + English with accent adaptation. AiKOVA understands Pidgin, Sheng, Naija slang. Set per-branch language in 2 clicks." },
   { q: "Can I cancel anytime?", a: "Cancel in one click. Keep your data for 90 days. Annual plans refund prorated. We’re built for trust — same payments you use for your shop." },
 ];
@@ -46,39 +49,39 @@ export default function PricingPage() {
   const pricingCards = [
     {
       name: "Starter",
-      badge: "Free forever",
-      price: billingAnnual ? 0 : 0,
+      badge: "10k AKC / mo",
+      price: billingAnnual ? 20 : 25,
       suffix: "/month",
       accent: "from-[#00E5FF] to-[#00B8D4]",
       border: "#00E5FF",
-      desc: "Perfect for solo shops & market stalls testing AI receptionist.",
-      features: ["Up to 100 customers / mo", "Basic invoicing & receipts", "Email support (24h)", "Mobile & web dashboard", "1 language, 1 location"],
-      cta: "Get Started Free",
+      desc: "Solo shops & stalls — prepaid AKC wallet · ~500 voice mins runway.",
+      features: ["10,000 AKC / month allotment", "~500 voice mins · 1k SMS · 1k convos", "10GB · 3 voices · 2 langs · 2 channels", "M-Pesa · Flutterwave · Paystack", "5,000 AKC free trial (14 days)"],
+      cta: "Start — $25",
       ctaStyle: "bg-slate-900 text-white hover:bg-slate-800",
     },
     {
       name: "Growth",
-      badge: "Most popular",
-      price: billingAnnual ? 24 : 29,
+      badge: "Most popular · 35k AKC",
+      price: billingAnnual ? 63 : 79,
       suffix: "/month",
       accent: "from-[#2962FF] to-[#00E5FF]",
       border: "#2962FF",
-      desc: "For growing shops, salons, clinics — save 94% vs $399 tools.",
-      features: ["Up to 1,000 customers / mo", "Analytics & weekly savings report", "Team — 5 users included", "M-Pesa, Flutterwave, Paystack", "Priority support + onboarding", "6 languages, 3 locations"],
-      cta: "Start Growing — $29",
+      desc: "Growing shops, salons, clinics — Social-to-Sale + AKC reload packs.",
+      features: ["35,000 AKC / month allotment", "~1,750 voice mins · 5k SMS · 5k convos", "50GB · 8 voices · 5 langs · 5 channels", "Social-to-Sale · team · analytics", "Reload packs +10k → +150k anytime"],
+      cta: "Start Growing — $79",
       ctaStyle: "text-white",
       popular: true,
     },
     {
       name: "Scale",
-      badge: "For chains",
-      price: billingAnnual ? 83 : 99,
+      badge: "100k AKC / mo",
+      price: billingAnnual ? 159 : 199,
       suffix: "/month",
       accent: "from-[#76FF03] to-[#00E5FF]",
       border: "#76FF03",
-      desc: "Unlimited for restaurants, pharmacies, multi-branch operations.",
-      features: ["Unlimited customers & calls", "Advanced reporting & API", "Dedicated success manager", "24/7 phone + WhatsApp", "Unlimited languages & locations", "Custom workflows & integrations"],
-      cta: "Contact Sales",
+      desc: "Chains & multi-branch — full Voice Mesh + handoff waterfall.",
+      features: ["100,000 AKC / month allotment", "~5,000 voice mins · 20k SMS", "200GB · 23 voices · 23 langs · all channels", "Team handoff · custom rates", "Enterprise AKC pools available"],
+      cta: "Go Scale — $199",
       ctaStyle: "bg-slate-900 text-white hover:bg-slate-800",
     },
   ];
@@ -117,7 +120,10 @@ export default function PricingPage() {
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               Trusted by 2,000+ businesses
             </div>
-            <a href="#cta" className="hidden sm:inline-flex h-10 px-5 rounded-full text-white text-[14px] font-semibold items-center justify-center shadow-[0_8px_20px_rgba(41,98,255,0.25)]" style={{ background: 'var(--gradient)' }}>
+            <a href={signInUrl('africa')} className="hidden sm:inline-flex text-[13.5px] font-medium px-3 py-2 text-slate-600 hover:text-slate-900">
+              Sign in
+            </a>
+            <a href={startSetupUrl('africa')} className="hidden sm:inline-flex h-10 px-5 rounded-full text-white text-[14px] font-semibold items-center justify-center shadow-[0_8px_20px_rgba(41,98,255,0.25)]" style={{ background: 'var(--gradient)' }}>
               Start free trial
             </a>
             <button
@@ -138,7 +144,7 @@ export default function PricingPage() {
             {["Features","Solutions","Languages","How It Works","Pricing","Demo"].map((l) => (
               <a key={l} href="#pricing" className="block text-[15px] font-medium text-slate-700">{l}</a>
             ))}
-            <a href="#cta" className="flex h-11 rounded-full text-white font-semibold items-center justify-center" style={{ background: 'var(--gradient)' }}>Start free trial — $0</a>
+            <a href={startSetupUrl('africa')} className="flex h-11 rounded-full text-white font-semibold items-center justify-center" style={{ background: 'var(--gradient)' }}>Start free trial — $0</a>
           </div>
         )}
       </header>
@@ -164,7 +170,7 @@ export default function PricingPage() {
               </h1>
 
               <p className="mt-6 max-w-[560px] text-[17px] sm:text-[18px] leading-[1.6] text-slate-600">
-                From $0 to $99, not $399/location. Pay with <span className="font-semibold text-slate-900">M-Pesa, Flutterwave, Paystack.</span> Save 94% vs Slang AI — same warmth, more languages, built for your market stall to multi-branch.
+                <span className="font-semibold text-slate-900">AiKOVA Credits (AKC)</span> — prepaid usage coins like VisaGuide VGC. Starter <b>$25 / 10k AKC</b>, Growth <b>$79 / 35k</b>, Scale <b>$199 / 100k</b>. Pay with <span className="font-semibold text-slate-900">M-Pesa, Flutterwave, Paystack.</span> 5,000 AKC free trial · 14 days.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -323,17 +329,21 @@ export default function PricingPage() {
             </div>
           </div>
 
+          <div className="mt-8 rounded-[24px] border border-slate-200 bg-[#F8FAFC] overflow-hidden">
+            <AkcTierStrip compact />
+          </div>
+
           {/* visual reference + cards */}
           <div className="reveal reveal-delay-1 mt-10 grid lg:grid-cols-[360px_1fr] gap-6 items-start">
             <div className="rounded-[24px] bg-white border border-slate-200 shadow-[var(--shadow-card)] p-3">
-              <div className="text-[11px] font-bold tracking-widest uppercase text-slate-500 px-2 py-1">Infographic reference • Visual system</div>
+              <div className="text-[11px] font-bold tracking-widest uppercase text-slate-500 px-2 py-1">AKC runway · Visual system</div>
               <div className="mt-2 rounded-[16px] overflow-hidden border border-slate-100">
-                <img src={pricingInfographicUrl} alt="Pricing plans infographic $0 Starter $29 Growth $99 Scale" className="w-full object-cover" />
+                <img src={pricingInfographicUrl} alt="Pricing plans infographic AKC Starter Growth Scale" className="w-full object-cover" />
               </div>
               <div className="mt-3 grid grid-cols-3 gap-2 text-[11px]">
-                <div className="rounded-xl bg-slate-50 border p-2"><div className="font-bold">Starter</div><div className="text-slate-500">$0</div></div>
-                <div className="rounded-xl bg-blue-50 border border-blue-100 p-2"><div className="font-bold text-blue-700">Growth</div><div className="text-slate-500">$29</div></div>
-                <div className="rounded-xl bg-lime-50 border border-lime-100 p-2"><div className="font-bold text-lime-700">Scale</div><div className="text-slate-500">$99</div></div>
+                <div className="rounded-xl bg-slate-50 border p-2"><div className="font-bold">Starter</div><div className="text-slate-500">$25 · 10k AKC</div></div>
+                <div className="rounded-xl bg-blue-50 border border-blue-100 p-2"><div className="font-bold text-blue-700">Growth</div><div className="text-slate-500">$79 · 35k AKC</div></div>
+                <div className="rounded-xl bg-lime-50 border border-lime-100 p-2"><div className="font-bold text-lime-700">Scale</div><div className="text-slate-500">$199 · 100k AKC</div></div>
               </div>
             </div>
 
@@ -372,9 +382,9 @@ export default function PricingPage() {
                   </ul>
 
                   <div className="mt-auto pt-7">
-                    <button className={`w-full h-[46px] rounded-full font-semibold text-[14px] transition hover:translate-y-[-1px] active:translate-y-[0px] ${card.ctaStyle}`} style={card.popular ? { background: 'var(--gradient)' } : {}}>
+                    <a href={startSetupUrl('africa')} className={`w-full h-[46px] rounded-full font-semibold text-[14px] transition hover:translate-y-[-1px] active:translate-y-[0px] inline-flex items-center justify-center ${card.ctaStyle}`} style={card.popular ? { background: 'var(--gradient)' } : {}}>
                       {card.cta}
-                    </button>
+                    </a>
                     <div className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-slate-500">
                       <span className="h-3 w-3 rounded-full bg-emerald-500 grid place-items-center text-white text-[8px]">✓</span> 14-day trial • No card • M-Pesa ready
                     </div>
@@ -621,7 +631,7 @@ export default function PricingPage() {
                     Join 2,000+ African shops, clinics, salons who switched from $399 Slang AI. 14-day trial, no card, cancel anytime. Built for Yaba Market, ready for scale.
                   </p>
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <a href="#pricing-cards" className="h-[52px] px-8 rounded-full bg-white text-slate-900 font-bold text-[15px] inline-flex items-center justify-center gap-2 shadow-[0_12px_30px_rgba(255,255,255,0.15)] hover:translate-y-[-1px] transition">
+                    <a href={startSetupUrl('africa')} className="h-[52px] px-8 rounded-full bg-white text-slate-900 font-bold text-[15px] inline-flex items-center justify-center gap-2 shadow-[0_12px_30px_rgba(255,255,255,0.15)] hover:translate-y-[-1px] transition">
                       Start free — $0 today
                       <span className="h-6 w-6 rounded-full bg-slate-900 text-white grid place-items-center text-[12px]">→</span>
                     </a>

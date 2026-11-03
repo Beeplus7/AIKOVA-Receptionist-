@@ -9,6 +9,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Fragment+Mono:wght@400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -401,7 +403,7 @@ body{ background: var(--bg); color: var(--text); overflow-x: clip; }
   opacity:0.6;
 }
 
-.mono { font-family: 'Inter', monospace; font-variant-numeric: tabular-nums; }
+.mono { font-family: 'Fragment Mono', ui-monospace, 'Inter', monospace; font-variant-numeric: tabular-nums; }
 
 /* custom scrollbar */
 
@@ -549,3 +551,384 @@ body{ background: var(--bg); color: var(--text); overflow-x: clip; }
 .gradient-btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px rgba(41,98,255,0.25); filter: brightness(1.05); }
 .gradient-btn:active{ transform: translateY(0); }
 
+/* --- marketing region switcher (top-left, readiness-style) --- */
+.marketing-region-switcher {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 10000;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+.marketing-region-switcher__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: rgba(248, 250, 252, 0.94);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.marketing-region-switcher__btn {
+  border: 0;
+  background: transparent;
+  border-radius: 12px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #64748b;
+  cursor: pointer;
+  transition: color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
+}
+.marketing-region-switcher__btn:hover {
+  color: #0f172a;
+}
+.marketing-region-switcher__btn.is-active {
+  color: #0f172a;
+  box-shadow: 0 4px 14px rgba(41, 98, 255, 0.18);
+  background: linear-gradient(102deg, #00e5ff 0%, #2962ff 55%, #76ff03 100%);
+}
+@media (max-width: 720px) {
+  .marketing-region-switcher {
+    top: 10px;
+    left: 10px;
+    right: 64px;
+  }
+  .marketing-region-switcher__track {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .marketing-region-switcher__btn {
+    padding: 6px 9px;
+    font-size: 11px;
+  }
+}
+
+/* --- global marketing pages dropdown (top-right) --- */
+.site-pages-menu {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 10000;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.site-pages-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 12px 0 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: rgba(255, 255, 255, 0.92);
+  color: #0f172a;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.site-pages-menu__trigger:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.16);
+  background: #fff;
+}
+
+.site-pages-menu__trigger:focus-visible {
+  outline: 2px solid #2962ff;
+  outline-offset: 2px;
+}
+
+.site-pages-menu__label {
+  max-width: 9.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site-pages-menu__chevron {
+  transition: transform 0.18s ease;
+  color: #64748b;
+}
+
+.site-pages-menu__chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.site-pages-menu__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: min(18rem, calc(100vw - 28px));
+  padding: 10px;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+.site-pages-menu__heading {
+  margin: 0 8px 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.site-pages-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: min(70vh, 28rem);
+  overflow: auto;
+}
+
+.site-pages-menu__item {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: #334155;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.site-pages-menu__item:hover {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.site-pages-menu__item.is-active {
+  background: linear-gradient(102deg, rgba(0, 229, 255, 0.14), rgba(41, 98, 255, 0.12), rgba(118, 255, 3, 0.12));
+  color: #0f172a;
+}
+
+@media (max-width: 640px) {
+  .site-pages-menu {
+    top: 10px;
+    right: 10px;
+  }
+
+  .site-pages-menu__label {
+    max-width: 6.5rem;
+  }
+}
+
+/* --- HTML artefact frames (EU pages 8–10 + onboarding) --- */
+.eu-artefact {
+  position: fixed;
+  inset: 0;
+  background: #e6ebf4;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.eu-artefact__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #e6ebf4;
+}
+
+
+/* ========================================================================== */
+/* eurozone — unique extras from /tmp/aikova-eu page index.css files          */
+/* (skipping duplicated @tailwind / font stacks / global * html body rules)   */
+/* ========================================================================== */
+
+:root {
+  --uk-blue: #012169;
+  --uk-red: #CE1126;
+  --ink: #0F172A;
+  --line: #E2E8F0;
+  --grad-a: #00E5FF;
+  --grad-b: #2962FF;
+  --grad-c: #76FF03;
+  --bg-soft: #F1F5F9;
+  --bg-card: #FFFFFF;
+  --surface-2: #F1F5F9;
+  --shadow-infographic: 0 32px 80px -16px rgba(1,33,105,0.16), 0 12px 32px -8px rgba(41,98,255,0.12);
+  --shadow-elev: 0 20px 60px rgba(1,33,105,0.12), 0 8px 24px rgba(0,0,0,0.06);
+  --shadow-lift: 0 32px 80px -16px rgba(15,23,42,0.18);
+  --grad-soft: linear-gradient(135deg, rgba(0,229,255,0.12) 0%, rgba(41,98,255,0.12) 50%, rgba(118,255,3,0.12) 100%);
+  --slate-soft: #475569;
+  --slate-2: #475569;
+  --slate-3: #94A3B8;
+}
+
+@keyframes slideInUp {
+  0% { transform: translateY(18px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes slideInRight {
+  0% { transform: translateX(28px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(32px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.9); }
+}
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.08); opacity: 0; }
+  100% { transform: scale(1.08); opacity: 0; }
+}
+
+.slide-card { animation: slideInUp 700ms cubic-bezier(.16,1,.3,1) both; }
+
+.gradient-brand {
+  background: linear-gradient(102deg, var(--grad-a) 0%, var(--grad-b) 52%, var(--grad-c) 100%);
+}
+.gradient-uk-soft {
+  background: linear-gradient(180deg, rgba(1,33,105,0.08) 0%, rgba(206,17,38,0.06) 50%, rgba(255,255,255,0) 100%);
+}
+/* final/get-started uses AiKOVA gradient as .gradient-uk */
+.gradient-uk {
+  background: linear-gradient(102deg, #00E5FF 0%, #2962FF 55%, #76FF03 100%);
+}
+.gradient-text-uk {
+  background: linear-gradient(102deg, #00E5FF 0%, #2962FF 50%, #012169 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-bg-uk {
+  background: linear-gradient(102deg, #012169 0%, #1E3A8A 35%, #2962FF 70%, #00E5FF 100%);
+}
+.text-gradient {
+  background: linear-gradient(102deg, #00E5FF, #2962FF 50%, #76FF03);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.underline-uk {
+  background: linear-gradient(90deg, #012169, #CE1126, #2962FF, #00E5FF);
+  height: 6px;
+  border-radius: 999px;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.grad-text {
+  background: linear-gradient(92deg, var(--cyan) 0%, var(--blue) 52%, var(--lime) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.grad-border { position: relative; }
+.grad-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue), var(--lime));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.slide-left { opacity: 0; transform: translateX(-40px); transition: all 0.8s cubic-bezier(.22,1,.36,1); }
+.slide-right { opacity: 0; transform: translateX(40px); transition: all 0.8s cubic-bezier(.22,1,.36,1); }
+.slide-left.in,
+.slide-right.in { opacity: 1; transform: translateX(0); }
+
+.slide-in-left { opacity: 0; transform: translateX(-32px); transition: all 0.8s cubic-bezier(0.16,1,0.3,1); }
+.slide-in-left.in { opacity: 1; transform: translateX(0); }
+.slide-in-right { opacity: 0; transform: translateX(32px); transition: all 0.8s cubic-bezier(0.16,1,0.3,1); }
+.slide-in-right.in { opacity: 1; transform: translateX(0); }
+
+.pulse-ring { animation: pulseRing 2.4s cubic-bezier(0.4,0,0.6,1) infinite; }
+.float { animation: float 6s ease-in-out infinite; }
+
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+.site-pages-menu__section + .site-pages-menu__section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* --- AiKOVA Companion Guide (floater + page-flip) --- */
+.aikova-perspective { perspective: 2000px; }
+.aikova-paper-texture {
+  background-image:
+    radial-gradient(at 20% 30%, rgba(0,229,255,0.04) 0%, transparent 50%),
+    radial-gradient(at 80% 70%, rgba(118,255,3,0.04) 0%, transparent 50%),
+    linear-gradient(90deg, rgba(15,23,42,0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 24px 24px;
+}
+.aikova-page-shadow-left { background: linear-gradient(90deg, rgba(15,23,42,0.08) 0%, transparent 100%); }
+.aikova-page-shadow-right { background: linear-gradient(270deg, rgba(15,23,42,0.10) 0%, transparent 100%); }
+.aikova-rotate-y { transform: rotateY(6deg); transform-style: preserve-3d; }
+.aikova-rotate-y-neg { transform: rotateY(-6deg); transform-style: preserve-3d; }
+.aikova-animate-slide-in { animation: aikovaSlideInUp 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+.aikova-companion-host .gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.aikova-companion-host .gradient-border { position: relative; }
+.aikova-companion-host .gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes aikovaFloatPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+@keyframes aikovaPingRing {
+  0% { transform: scale(0.9); opacity: 0.75; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+@keyframes aikovaSlideInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes aikovaDropIn {
+  from { opacity: 0; transform: translateY(-12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes aikovaDoorLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-102%); }
+}
+@keyframes aikovaDoorRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(102%); }
+}
+@keyframes cablePulse {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 40; }
+}

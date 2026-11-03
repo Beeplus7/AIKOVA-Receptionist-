@@ -37,3 +37,6 @@ apps/web/dist/
 server/node_modules/
 server/data/
 .DS_Store
+
+apps/web/.env
+supabase/.temp/

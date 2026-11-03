@@ -8,6 +8,7 @@ import diverseGroupUrl from "./assets/b123e811c39a1bfc-image_20261029_175410.web
 import lagosWomanUrl from "./assets/47c62095f3e7ab30-image_20261029_175406.webp";
 import voiceMeshUrl from "./assets/ac484e8685f0aa0b-image_20261029_175411.webp";
 import nairobiManUrl from "./assets/bf0aca67c0bc7f7a-image_20261029_175416.webp";
+import { signInUrl } from "../../lib/setupFlow";
 
 // Language data
 const LANGUAGES = [
@@ -99,7 +100,7 @@ export default function LanguagesPage() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <button className="h-10 rounded-full border border-[#E2E8F0] bg-white px-5 text-[14px] font-semibold hover:bg-[#F8FAFC] transition">Sign in</button>
+            <a href={signInUrl("africa")} className="h-10 rounded-full border border-[#E2E8F0] bg-white px-5 text-[14px] font-semibold hover:bg-[#F8FAFC] transition inline-flex items-center">Sign in</a>
             <button
               onClick={() => setDemoOpen(true)}
               className="h-10 rounded-full px-6 text-[14px] font-bold text-white shadow-[0_8px_20px_-8px_rgba(41,98,255,0.5)] transition hover:brightness-110"
@@ -517,7 +518,7 @@ export default function LanguagesPage() {
             >
               Book 15-min demo
             </button>
-            <button className="h-[52px] rounded-full bg-[#0F172A]/20 border border-white/30 text-white px-8 font-semibold text-[15px] backdrop-blur hover:bg-[#0F172A]/30 transition">View pricing →</button>
+            <a href="/pricing" className="h-[52px] rounded-full bg-[#0F172A]/20 border border-white/30 text-white px-8 font-semibold text-[15px] backdrop-blur hover:bg-[#0F172A]/30 transition inline-flex items-center">View pricing →</a>
           </div>
         </div>
         <div className="relative h-px w-full bg-white/20" />

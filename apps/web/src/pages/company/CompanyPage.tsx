@@ -3,6 +3,7 @@ import logoUrl from "./assets/32d4f05ae5209978-image_6A9BA612-7186-480D-9D5C-7EF
 import missionMapUrl from "./assets/40487a0611b0c427-image_20261029_185402.webp";
 import teamBuildingUrl from "./assets/fca746176da19100-image_20261029_185402_1.webp";
 import founderVisionUrl from "./assets/16cc43351b39308e-image_20261029_185418.webp";
+import { startSetupUrl } from "../../lib/setupFlow";
 
 // Hook for reveal on scroll
 function useReveal() {
@@ -94,9 +95,9 @@ export default function CompanyPage() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
-            <button className="h-10 px-5 rounded-full bg-[#0F172A] text-white text-[14px] font-semibold hover:opacity-90 transition-opacity">
+            <a href={startSetupUrl("africa")} className="h-10 px-5 rounded-full bg-[#0F172A] text-white text-[14px] font-semibold hover:opacity-90 transition-opacity inline-flex items-center">
               Get Started
-            </button>
+            </a>
           </div>
 
           <button
@@ -127,7 +128,7 @@ export default function CompanyPage() {
                 {l}
               </a>
             ))}
-            <button className="w-full h-11 rounded-full bg-[#0F172A] text-white font-semibold">Get Started</button>
+            <a href={startSetupUrl("africa")} className="w-full h-11 rounded-full bg-[#0F172A] text-white font-semibold inline-flex items-center justify-center">Get Started</a>
           </div>
         )}
       </header>

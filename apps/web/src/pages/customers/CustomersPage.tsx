@@ -10,6 +10,7 @@ import {
   MessageCircle, Sparkles, Quote, Check, MapPin, Star
 } from "lucide-react";
 import { Instagram } from "../../icons/social";
+import { startSetupUrl } from '../../lib/setupFlow';
 
 // Hook for reveal animation
 function useReveal() {
@@ -70,8 +71,8 @@ export default function CustomersPage() {
             </nav>
           </div>
           <div className="flex items-center gap-3">
-            <a href="#demo" className="hidden md:inline-flex text-[14px] font-semibold px-4 py-2.5 rounded-full border border-slate-200 hover:bg-slate-50 transition">Demo</a>
-            <a href="#trial" className="inline-flex items-center gap-2 text-[14px] font-bold px-5 py-2.5 rounded-full text-white shadow-[0_8px_20px_rgba(41,98,255,0.25)] hover:scale-[1.02] active:scale-[0.98] transition" style={{ background: "var(--gradient)" }}>
+            <a href="/business" className="hidden md:inline-flex text-[14px] font-semibold px-4 py-2.5 rounded-full border border-slate-200 hover:bg-slate-50 transition">Demo</a>
+            <a href={startSetupUrl("africa")} className="inline-flex items-center gap-2 text-[14px] font-bold px-5 py-2.5 rounded-full text-white shadow-[0_8px_20px_rgba(41,98,255,0.25)] hover:scale-[1.02] active:scale-[0.98] transition" style={{ background: "var(--gradient)" }}>
               Start Free Trial <ArrowUpRight className="h-4 w-4" />
             </a>
             <button onClick={()=>setMobileOpen(v=>!v)} className="lg:hidden h-10 w-10 grid place-items-center rounded-full border border-slate-200">
@@ -574,7 +575,7 @@ export default function CustomersPage() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-3 min-w-[260px]">
-                    <a href="#start" className="h-[56px] inline-flex items-center justify-center gap-2 rounded-full bg-white text-slate-900 font-extrabold text-[15px] hover:scale-[1.02] active:scale-[0.98] transition shadow-[0_12px_24px_rgba(0,0,0,0.25)]">
+                    <a href={startSetupUrl("africa")} className="h-[56px] inline-flex items-center justify-center gap-2 rounded-full bg-white text-slate-900 font-extrabold text-[15px] hover:scale-[1.02] active:scale-[0.98] transition shadow-[0_12px_24px_rgba(0,0,0,0.25)]">
                       Start Now — Free <ArrowUpRight className="h-4 w-4" />
                     </a>
                     <a href="#founder" className="h-[52px] inline-flex items-center justify-center gap-2 rounded-full bg-transparent border border-white/20 text-white font-bold text-[14px] hover:bg-white/10 transition">

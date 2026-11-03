@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+  --border: #e2e8f0;
+  --border-soft: #e2e8f0;
+  --text: #0f172a;
+  --text-soft: #475569;
+  --text-muted: #94a3b8;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 6px 16px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.08);
+  /* Content accent only — no lime wash on surfaces */
+  --grad: linear-gradient(135deg, #00e5ff 0%, #2962ff 100%);
+  --grad-soft: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.1) 0%,
+    rgba(41, 98, 255, 0.1) 100%
+  );
+  --grad-border: linear-gradient(135deg, #00e5ff, #2962ff);
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+}
+
+.gift-shell {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #eef2f7 !important;
+}
+
+.gift-shell .mono {
+  font-family: 'Fragment Mono', monospace;
+}
+
+.gift-shell .serif {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+@keyframes giftSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.gift-shell .drop-card {
+  /* quieter — no staggered drop bounce on every chip */
+  animation: none;
+}
+
+.gift-shell .slide-panel {
+  animation: giftSlideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.gift-shell .gradient-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gift-shell .gradient-border::before {
+  display: none;
+}
+
+.gift-shell .gradient-btn {
+  background: var(--grad);
+  color: #0f172a;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gift-shell .gradient-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 6px 18px rgba(41, 98, 255, 0.22);
+}
+
+.gift-shell .gradient-btn:active {
+  transform: translateY(0);
+}
+
+.gift-shell button.rounded-full,
+.gift-shell a.rounded-full,
+.gift-shell input.rounded-full,
+.gift-shell select.rounded-full {
+  border-radius: 10px !important;
+}
+
+.gift-shell .gift-inbox-card {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.gift-shell .custom-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.gift-shell .custom-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.gift-shell .custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Neutralize leftover emerald / lime surface washes */
+.gift-shell .bg-emerald-50,
+.gift-shell .bg-\[\#F0FDF4\],
+.gift-shell .from-cyan-400,
+.gift-shell .to-emerald-400 {
+  background-color: #f1f5f9 !important;
+  background-image: none !important;
+}
+
+.gift-shell .text-emerald-500,
+.gift-shell .text-emerald-700,
+.gift-shell .border-emerald-200 {
+  color: #475569 !important;
+  border-color: #e2e8f0 !important;
+}

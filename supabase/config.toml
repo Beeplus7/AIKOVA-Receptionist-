@@ -1,0 +1,44 @@
+[project]
+id = "heaqcfmphxwfzkqtatrt"
+
+[api]
+enabled = true
+
+[db]
+major_version = 15
+
+[functions.telephony-webhook-africa]
+verify_jwt = false
+
+[functions.telephony-webhook-eurozone]
+verify_jwt = false
+
+[functions.stt-whisper]
+verify_jwt = false
+
+[functions.tts-coqui-elevenlabs]
+verify_jwt = false
+
+[functions.brain-rag]
+verify_jwt = false
+
+[functions.knowledge-embed]
+verify_jwt = false
+
+[functions.booking-calendar]
+verify_jwt = false
+
+[functions.social-webhook-instagram]
+verify_jwt = false
+
+[functions.social-webhook-facebook]
+verify_jwt = false
+
+[functions.social-auto-dm]
+verify_jwt = false
+
+[functions.handoff-waterfall]
+verify_jwt = false
+
+[functions.billing-usage]
+verify_jwt = false

@@ -4,6 +4,7 @@ import manLagos from "./assets/f9fdfa51619385a0-image_20261029_184835.webp";
 import playbooksImg from "./assets/8e32a695693c4281-image_20261029_184829.webp";
 import mamaShopImg from "./assets/62ddff575157b4b6-image_20261029_184832.webp";
 import entrepreneurImg from "./assets/5c624352b4989e56-image_20261029_184826.webp";
+import { startSetupUrl, signInUrl } from '../../lib/setupFlow';
 
 // ---------- hooks ----------
 function useReveal() {
@@ -192,10 +193,10 @@ export default function ResourcesPage() {
             </nav>
           </div>
           <div className="flex items-center gap-3">
-            <a href="/get-started" className="hidden sm:inline-flex h-9 px-4 items-center justify-center rounded-full border text-[13px] font-semibold" style={{ borderColor: "var(--border)", color: "var(--text)" }}>
+            <a href={signInUrl("africa")} className="hidden sm:inline-flex h-9 px-4 items-center justify-center rounded-full border text-[13px] font-semibold" style={{ borderColor: "var(--border)", color: "var(--text)" }}>
               Log in
             </a>
-            <a href="#cta" className="h-9 px-5 inline-flex items-center justify-center rounded-full text-[13px] font-bold text-white gradient-bg shadow-[0_4px_16px_rgba(41,98,255,0.25)] hover:shadow-[0_6px_20px_rgba(41,98,255,0.32)] transition-shadow">
+            <a href={startSetupUrl("africa")} className="h-9 px-5 inline-flex items-center justify-center rounded-full text-[13px] font-bold text-white gradient-bg shadow-[0_4px_16px_rgba(41,98,255,0.25)] hover:shadow-[0_6px_20px_rgba(41,98,255,0.32)] transition-shadow">
               Start free
             </a>
           </div>

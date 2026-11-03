@@ -3,6 +3,7 @@ import logoImg from './assets/32d4f05ae5209978-image_6A9BA612-7186-480D-9D5C-7EF
 import legalImg from './assets/04c0223ae111b1fe-image_20261029_185711.webp';
 import demoImg from './assets/1e32f7d558a47b73-image_20261029_185712.webp';
 import contactImg from './assets/ec2c74e49f8b0042-image_20261029_185716.webp';
+import { startSetupUrl } from '../../lib/setupFlow';
 
 // Intersection reveal hook
 function useReveal() {
@@ -144,7 +145,7 @@ export default function GetStartedPage() {
             <a href="/languages" className="hover:text-slate-900 transition">Languages</a>
             <a href="/how-it-works" className="hover:text-slate-900 transition">How It Works</a>
             <a href="/pricing" className="hover:text-slate-900 transition">Pricing</a>
-            <a href="#live-demo" className="text-slate-900 font-semibold border-b-2 border-slate-900 pb-0.5">Demo</a>
+            <a href={startSetupUrl("africa")} className="text-slate-900 font-semibold border-b-2 border-slate-900 pb-0.5">Demo</a>
             <a href="#contact" className="hover:text-slate-900 transition">Contact</a>
           </nav>
 
@@ -569,7 +570,7 @@ export default function GetStartedPage() {
                 </div>
                 <div className="flex flex-wrap gap-3 shrink-0">
                   <button onClick={()=>window.scrollTo({top:0, behavior:'smooth'})} className="h-11 px-6 rounded-full bg-white text-slate-900 font-semibold text-[14px] shadow-sm hover:bg-slate-50 transition">Download All Artifacts</button>
-                  <a href="#live-demo" className="h-11 px-6 rounded-full bg-slate-900 text-white font-semibold text-[14px] inline-flex items-center hover:bg-black transition">Start Building</a>
+                  <a href={startSetupUrl("africa")} className="h-11 px-6 rounded-full bg-slate-900 text-white font-semibold text-[14px] inline-flex items-center hover:bg-black transition">Start Building</a>
                 </div>
               </div>
             </div>

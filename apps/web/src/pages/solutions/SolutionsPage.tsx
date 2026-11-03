@@ -5,6 +5,7 @@ import {
   MessageSquare, Zap, Clock, Languages, ChevronRight, Menu, X
 } from 'lucide-react';
 import { Instagram, Facebook } from '../../icons/social';
+import { startSetupUrl, signInUrl } from '../../lib/setupFlow';
 
 // Local image imports - production paths
 import logoImg from "./assets/32d4f05ae5209978-image_6A9BA612-7186-480D-9D5C-7EF8BE2260B7.jpeg";
@@ -205,10 +206,10 @@ export default function SolutionsPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <button className="hidden md:inline-flex h-10 px-5 rounded-full border border-slate-200 text-[14px] font-semibold text-slate-700 hover:bg-slate-50 transition">Sign in</button>
-            <button className="inline-flex h-10 px-5 rounded-full bg-slate-900 text-white text-[14px] font-semibold items-center gap-2 hover:bg-slate-800 transition">
+            <a href={signInUrl('africa')} className="hidden md:inline-flex h-10 px-5 rounded-full border border-slate-200 text-[14px] font-semibold text-slate-700 hover:bg-slate-50 transition items-center">Sign in</a>
+            <a href={startSetupUrl('africa')} className="inline-flex h-10 px-5 rounded-full bg-slate-900 text-white text-[14px] font-semibold items-center gap-2 hover:bg-slate-800 transition">
               Start free <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
             <button onClick={() => setMobileMenu(!mobileMenu)} className="lg:hidden w-10 h-10 grid place-items-center rounded-full bg-slate-50 border border-slate-200">
               {mobileMenu ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -595,9 +596,9 @@ export default function SolutionsPage() {
                 Upload a 30-sec voice note describing your business. AiKOVA clones your tone, learns your menu/services, speaks your customers' language.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <button className="h-12 px-6 rounded-full bg-white text-slate-900 text-[14px] font-bold inline-flex items-center gap-2 hover:bg-slate-50 transition">
+                <a href={startSetupUrl('africa')} className="h-12 px-6 rounded-full bg-white text-slate-900 text-[14px] font-bold inline-flex items-center gap-2 hover:bg-slate-50 transition">
                   Build my AI now <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
                 <button className="h-12 px-6 rounded-full border border-white/20 text-white text-[14px] font-semibold inline-flex items-center gap-2 hover:bg-white/10 transition">
                   <Globe className="w-4 h-4" /> Watch 45s demo
                 </button>

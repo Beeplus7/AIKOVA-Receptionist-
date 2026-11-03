@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AiKOVA Production Readiness — build status for UK, EU &amp; Africa</title>
+    <meta
+      name="description"
+      content="Live production readiness for AiKOVA Receptionist on ai-receptionist.aikova.co.uk. Marketing, onboarding, Gift Inbox, Stripe AKC, instant try (chat + voice), Twilio wiring, and what still needs provider API keys."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="canonical" href="https://ai-receptionist.aikova.co.uk/readiness" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AiKOVA Receptionist" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:url" content="https://ai-receptionist.aikova.co.uk/readiness" />
+    <meta property="og:title" content="AiKOVA Production Readiness — where we are &amp; what’s left" />
+    <meta
+      property="og:description"
+      content="Full Combo readiness monitor: marketing 100%, Gift Inbox live, Stripe AKC checkout live, instant try before register (chat + real Twilio dial path). Remaining blockers are provider API keys (OpenAI, TTS studio, Africa’s Talking)."
+    />
+    <meta property="og:image" content="https://ai-receptionist.aikova.co.uk/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="AiKOVA production readiness" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AiKOVA Production Readiness" />
+    <meta
+      name="twitter:description"
+      content="Honest scan of the live AiKOVA receptionist build — done vs waiting on API keys."
+    />
+    <meta name="twitter:image" content="https://ai-receptionist.aikova.co.uk/og-image.jpg" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "AiKOVA Production Readiness",
+        "url": "https://ai-receptionist.aikova.co.uk/readiness",
+        "description": "Production build monitor for AiKOVA Receptionist — Africa, Eurozone and UK Full Combo.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "AiKOVA Receptionist",
+          "url": "https://ai-receptionist.aikova.co.uk/"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://ai-receptionist.aikova.co.uk/og-image.jpg"
+        }
+      }
+    </script>
+    <style>
+      body { margin: 0; font-family: ui-sans-serif, system-ui, sans-serif; background: #e6ebf4; color: #0f172a; line-height: 1.55; }
+      main { max-width: 820px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+      h1 { font-size: 1.85rem; line-height: 1.15; margin: 0 0 0.75rem; }
+      h2 { font-size: 1.1rem; margin: 1.75rem 0 0.5rem; }
+      .pill { display: inline-block; background: #0f172a; color: #fff; border-radius: 999px; padding: 0.25rem 0.75rem; font-size: 0.75rem; font-weight: 700; }
+      .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1rem 1.1rem; margin: 0.75rem 0; }
+      ul { padding-left: 1.2rem; }
+      a { color: #2962ff; }
+      .muted { color: #64748b; font-size: 0.92rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="pill">Production readiness · Full Combo</p>
+      <h1>AiKOVA Production Readiness — where we are &amp; what’s left</h1>
+      <p>
+        Live monitor for <a href="https://ai-receptionist.aikova.co.uk/">ai-receptionist.aikova.co.uk</a>.
+        Interactive dashboard:
+        <a href="https://ai-receptionist.aikova.co.uk/readiness">open the full readiness app</a>.
+      </p>
+
+      <div class="card">
+        <strong>Closed without waiting on your API keys</strong>
+        <ul>
+          <li>Marketing Africa + Eurozone/UK sites (22 pages) live</li>
+          <li>Entrance dual doors + region adapters</li>
+          <li>Phase 1 onboarding combo + Gift Inbox / dashboard</li>
+          <li>Stripe AKC checkout + webhook credit (test mode)</li>
+          <li>Supabase Auth + Google sign-in</li>
+          <li>13 Edge Functions ACTIVE (incl. instant-try-call)</li>
+          <li>Instant try before register — chat + multi-language + Twilio dial path</li>
+          <li>Open Graph / Meta-readable homepage + this readiness page</li>
+          <li>DB rate limits for public try calls (Redis optional)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <strong>Still needs your API keys (cannot close without them)</strong>
+        <ul>
+          <li>OPENAI_API_KEY — Whisper STT, GPT brain, embeddings</li>
+          <li>ELEVENLABS_API_KEY or COQUI_TTS_URL — studio Voice Mesh TTS</li>
+          <li>AFRICAS_TALKING_* — Africa carrier primary (Twilio SID/token already wired; From number via one-time verify)</li>
+          <li>Optional: ANTHROPIC, Qdrant, Meta Graph tokens, live Stripe keys</li>
+        </ul>
+      </div>
+
+      <h2>Product snapshot</h2>
+      <p class="muted">
+        AiKOVA is an AI receptionist for UK, Europe and Africa — phone, WhatsApp, bookings and payments.
+        Try without signup at <a href="https://ai-receptionist.aikova.co.uk/try">/try</a>.
+      </p>
+      <p class="muted">Scanned against the live deploy. Export JSON from the interactive readiness page when signed in.</p>
+    </main>
+  </body>
+</html>
