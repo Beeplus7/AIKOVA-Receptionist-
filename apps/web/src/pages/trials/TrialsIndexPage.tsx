@@ -24,11 +24,11 @@ export default function TrialsIndexPage() {
             AiKOVA <span className="text-slate-400 font-semibold text-[12px]">Trials</span>
           </Link>
           <Link
-            to="/try"
+            to="/auth?mode=signup&region=eurozone&next=%2Fonboarding%2Fentrance"
             className="h-9 px-4 rounded-full text-[12px] font-bold text-[#0F172A] inline-flex items-center"
             style={{ background: 'linear-gradient(102deg,#00E5FF,#2962FF,#76FF03)' }}
           >
-            Instant try →
+            Get Started →
           </Link>
         </div>
       </header>

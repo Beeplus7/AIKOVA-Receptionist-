@@ -82,11 +82,11 @@ export default function TrialCategoryPage() {
             {trial.icon} {trial.short}
           </div>
           <Link
-            to="/try"
+            to="/auth?mode=signup&region=eurozone&next=%2Fonboarding%2Fentrance"
             className="h-9 px-3 rounded-full text-[12px] font-bold text-[#0F172A] inline-flex items-center shrink-0"
             style={{ background: 'linear-gradient(102deg,#00E5FF,#2962FF,#76FF03)' }}
           >
-            Try now
+            Get Started
           </Link>
         </div>
       </header>

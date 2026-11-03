@@ -129,18 +129,18 @@ export default function EuHomePage(){
             <span className="hidden md:inline-flex ml-2 text-[11px] tracking-[0.18em] uppercase font-semibold px-2.5 py-1 rounded-full bg-[#F1F5F9] text-[#334155] border">Eurozone</span>
           </a>
           <nav className="hidden lg:flex items-center gap-8 text-[14px] font-medium text-[#334155]">
-            {["Features","Solutions","Languages","Pricing","Demo"].map(t=>(
-              <a key={t} href={({Features:"/eu/features",Solutions:"/eu/solutions",Languages:"/eu/languages",Pricing:"/eu/pricing",Demo:"/eu/demo"} as Record<string,string>)[t] ?? `#${t.toLowerCase()}`} className="hover:text-black transition">{t}</a>
+            {["Features","Solutions","Languages","Pricing","Trials","Demo"].map(t=>(
+              <a key={t} href={({Features:"/eu/features",Solutions:"/eu/solutions",Languages:"/eu/languages",Pricing:"/eu/pricing",Trials:"/trials",Demo:"/eu/demo"} as Record<string,string>)[t] ?? `#${t.toLowerCase()}`} className="hover:text-black transition">{t}</a>
             ))}
           </nav>
           <div className="flex items-center gap-2.5">
             <div className="hidden md:flex items-center gap-1.5 rounded-full border border-[var(--line)] px-2.5 py-1.5 bg-white shadow-sm">
               <span className="text-[16px]">🇬🇧</span><span className="w-px h-4 bg-[var(--line)] mx-1" /><span className="text-[16px]">🇪🇺</span>
             </div>
-            {/* ASSESS BUTTON TO BE UPDATED ON MAIN HERO PAGE */}
+            <a href="/trials" className="hidden sm:inline-flex text-[14px] font-semibold text-[#334155] hover:text-black px-3">Try now</a>
             <a href={startSetupUrl('eurozone')} id="assess-button-main-hero" className="gradient-brand relative inline-flex items-center justify-center rounded-full px-5 h-10 text-[14px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(41,98,255,0.6)] hover:shadow-[0_12px_28px_-10px_rgba(41,98,255,0.7)] transition-all hover:-translate-y-px active:translate-y-0 overflow-hidden" style={{animation:"pulseGlow 2.8s infinite"}}>
               <span className="absolute inset-0 rounded-full pulse-ring border border-white/40 pointer-events-none" />
-              <span className="relative">Assess Business →</span>
+              <span className="relative">Get Started →</span>
             </a>
           </div>
         </div>
@@ -177,31 +177,17 @@ export default function EuHomePage(){
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
-              {/* Primary assess button in hero */}
               <a href={startSetupUrl('eurozone')} id="assess-button" className="gradient-brand relative inline-flex items-center justify-center rounded-full h-[48px] px-7 text-[15px] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(41,98,255,0.7)] hover:-translate-y-px active:translate-y-0 transition-all overflow-hidden" style={{animation:"pulseGlow 2.8s infinite"}}>
                 <span className="absolute inset-0 rounded-full pulse-ring border border-white/40 pointer-events-none" />
-                <span className="relative">Assess Your Business →</span>
+                <span className="relative">Get Started →</span>
               </a>
-              <button
-                type="button"
-                onClick={() => window.dispatchEvent(new Event('aikova:try-now'))}
+              <a
+                href="/trials"
                 className="rounded-full h-[48px] px-6 text-[14px] font-semibold border border-[var(--line)] bg-[#0F172A] text-white hover:bg-[#1E293B] transition flex items-center gap-2"
               >
                 <span className="h-6 w-6 rounded-full grid place-items-center text-[12px] font-black text-[#0F172A]" style={{ background: 'linear-gradient(102deg,#00E5FF,#2962FF,#76FF03)' }}>▶</span>
-                Try now — no signup
-              </button>
-              <button
-                type="button"
-                onClick={() => window.dispatchEvent(new Event('aikova:try-call'))}
-                className="rounded-full h-[48px] px-6 text-[14px] font-semibold border border-[var(--line)] bg-white hover:bg-[#F8FAFC] transition flex items-center gap-2"
-              >
-                <span className="h-6 w-6 rounded-full bg-[#0F172A] text-white grid place-items-center text-[12px]">📞</span>
-                Voice call trial
-              </button>
-              <button onClick={()=>setShowDemo(true)} className="rounded-full h-[48px] px-6 text-[14px] font-semibold border border-[var(--line)] bg-white hover:bg-[#F8FAFC] transition flex items-center gap-2">
-                <span className="h-6 w-6 rounded-full bg-[#0F172A] text-white grid place-items-center text-[12px]">▶</span> Watch UK Demo 45s
-              </button>
-              <a href="#euro-road" className="rounded-full h-[48px] px-6 text-[14px] font-semibold bg-[#F1F5F9] hover:bg-[#E2E8F0] transition">Explore Eurozone</a>
+                Try now
+              </a>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2 text-[12px] text-[#64748B]">
@@ -540,7 +526,7 @@ export default function EuHomePage(){
                 <h3 className="mt-3 text-[24px] lg:text-[32px] leading-[0.95] font-bold max-w-[22ch]">Ready to never miss a customer from Camden to Camberwell? Assess your business now.</h3>
                 <p className="mt-2 text-[13px] text-[#475569] max-w-[52ch]">The Garden Restaurant, Brew & Bean, High Street Clinic, Bloom Salon — AiKOVA already speaks their language.</p>
               </div>
-              <a href={startSetupUrl("eurozone")}  className="gradient-brand rounded-full h-[48px] px-8 text-[14px] font-semibold text-white shadow hover:-translate-y-px transition">Start free trial →
+              <a href={startSetupUrl("eurozone")}  className="gradient-brand rounded-full h-[48px] px-8 text-[14px] font-semibold text-white shadow hover:-translate-y-px transition">Get Started →
               </a>
             </div>
           </div>
@@ -623,7 +609,8 @@ export default function EuHomePage(){
             </div>
             <div className="p-5 flex justify-between items-center">
               <div className="text-[13px] text-[#475569]">From Brew & Bean latte order to Bloom colour cut — one AI, 6 London categories.</div>
-              <a href={startSetupUrl("eurozone")} className="gradient-brand rounded-full px-5 h-9 text-[13px] font-semibold text-white inline-flex items-center">Start free trial →</a>
+              <a href="/trials" className="rounded-full border border-[var(--line)] px-4 h-9 text-[13px] font-semibold text-[#334155] inline-flex items-center hover:bg-[#F8FAFC]">Try now</a>
+              <a href={startSetupUrl("eurozone")} className="gradient-brand rounded-full px-5 h-9 text-[13px] font-semibold text-white inline-flex items-center">Get Started →</a>
             </div>
           </div>
         </div>

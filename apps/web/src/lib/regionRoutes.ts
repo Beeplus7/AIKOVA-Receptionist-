@@ -1,4 +1,5 @@
 import type { RegionKey } from '../context/RegionContext'
+import { startSetupUrl } from './setupFlow'
 
 export const EUROZONE_PAGES = [
   { to: '/eu', label: 'Home' },
@@ -8,10 +9,11 @@ export const EUROZONE_PAGES = [
   { to: '/eu/how-it-works', label: 'How It Works' },
   { to: '/eu/pricing', label: 'Pricing' },
   { to: '/eu/demo', label: 'Demo' },
+  { to: '/trials', label: 'Trials' },
   { to: '/eu/customers', label: 'Customers' },
   { to: '/eu/resources', label: 'Resources' },
   { to: '/eu/company', label: 'Company' },
-  { to: '/eu/get-started', label: 'Get Started' },
+  { to: startSetupUrl('eurozone'), label: 'Get Started' },
 ] as const
 
 export const AFRICA_PAGES = [
@@ -22,10 +24,11 @@ export const AFRICA_PAGES = [
   { to: '/how-it-works', label: 'How It Works' },
   { to: '/pricing', label: 'Pricing' },
   { to: '/business', label: 'Business' },
+  { to: '/trials', label: 'Trials' },
   { to: '/customers', label: 'Customers' },
   { to: '/resources', label: 'Resources' },
   { to: '/company', label: 'Company' },
-  { to: '/get-started', label: 'Get Started' },
+  { to: startSetupUrl('africa'), label: 'Get Started' },
 ] as const
 
 /** Pair Africa ↔ Eurozone for switcher landing remap */
@@ -41,6 +44,7 @@ const AF_TO_EU: Record<string, string> = {
   '/resources': '/eu/resources',
   '/company': '/eu/company',
   '/get-started': '/eu/get-started',
+  '/trials': '/trials',
 }
 
 const EU_TO_AF: Record<string, string> = Object.fromEntries(
@@ -63,7 +67,11 @@ export function isAfricaMarketingPath(pathname: string) {
   ) {
     return false
   }
-  return AFRICA_PAGES.some((p) => p.to === pathname || (p.to !== '/' && pathname.startsWith(`${p.to}/`)))
+  if (pathname === '/trials' || pathname.startsWith('/trials/')) return true
+  return AFRICA_PAGES.some((p) => {
+    const pathOnly = p.to.split('?')[0]
+    return pathOnly === pathname || (pathOnly !== '/' && pathname.startsWith(`${pathOnly}/`))
+  })
 }
 
 export function homeForRegion(region: RegionKey) {
@@ -73,10 +81,12 @@ export function homeForRegion(region: RegionKey) {
 /** Map current path into the destination region's equivalent page (else home). */
 export function pathForRegion(pathname: string, region: RegionKey) {
   if (region === 'africa') {
+    if (pathname === '/trials' || pathname.startsWith('/trials/')) return pathname
     if (isAfricaMarketingPath(pathname) || pathname === '/') return pathname === '/eu' ? '/' : pathname
     return EU_TO_AF[pathname] ?? '/'
   }
   // eurozone + uk share EU marketing set
+  if (pathname === '/trials' || pathname.startsWith('/trials/')) return pathname
   if (isEurozonePath(pathname)) return pathname
   return AF_TO_EU[pathname] ?? '/eu'
 }

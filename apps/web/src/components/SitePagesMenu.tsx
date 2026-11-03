@@ -4,24 +4,10 @@ import { ChevronDown, LayoutGrid } from 'lucide-react'
 import { useRegion } from '../context/RegionContext'
 import { pagesForRegion } from '../lib/regionRoutes'
 
-const ADMIN_PAGES = [
-  { to: '/readiness', label: 'Production Readiness' },
-  { to: '/auth', label: 'Auth (Supabase)' },
-  { to: '/auth?mode=signup&next=%2Fonboarding%2Fentrance', label: '1 · Sign up' },
-  { to: '/onboarding/entrance', label: '2 · Entrance' },
-  { to: '/onboarding', label: '3 · Onboarding 8-step' },
-  { to: '/onboarding/complete', label: '4 · Confirm / Welcome' },
-  { to: '/app/inbox', label: 'Gift Dashboard Inbox' },
-  { to: '/app/dashboard', label: 'Dashboard KPIs' },
-  { to: '/app/billing', label: 'AKC Wallet / Billing' },
-  { to: '/admin/credits', label: 'Admin Credits Allocations' },
-  { to: '/app/calls', label: 'Calls' },
-  { to: '/app/knowledge', label: 'Knowledge' },
-] as const
-
 function isActive(pathname: string, to: string) {
-  if (to === '/' || to === '/eu') return pathname === to
-  return pathname === to || pathname.startsWith(`${to}/`)
+  const pathOnly = to.split('?')[0]
+  if (pathOnly === '/' || pathOnly === '/eu') return pathname === pathOnly
+  return pathname === pathOnly || pathname.startsWith(`${pathOnly}/`)
 }
 
 function matchLabel(
@@ -37,14 +23,6 @@ export default function SitePagesMenu() {
   const rootRef = useRef<HTMLDivElement>(null)
   const menuId = useId()
   const { region, label, flag } = useRegion()
-
-  const onAdmin =
-    location.pathname.startsWith('/onboarding') ||
-    location.pathname.startsWith('/app') ||
-    location.pathname.startsWith('/admin') ||
-    location.pathname.startsWith('/readiness') ||
-    location.pathname.startsWith('/production') ||
-    location.pathname.startsWith('/auth')
 
   const marketingPages = pagesForRegion(region)
 
@@ -73,33 +51,8 @@ export default function SitePagesMenu() {
     }
   }, [open])
 
-  const current = onAdmin
-    ? (matchLabel(location.pathname, ADMIN_PAGES) ?? 'Admin')
-    : (matchLabel(location.pathname, marketingPages) ?? `${flag} ${label}`)
-
-  const renderList = (
-    pages: readonly { to: string; label: string }[],
-    prefix: string,
-  ) => (
-    <ul className="site-pages-menu__list">
-      {pages.map((page) => {
-        const active = isActive(location.pathname, page.to)
-        return (
-          <li key={`${prefix}-${page.to}`}>
-            <Link
-              role="menuitem"
-              to={page.to}
-              className={`site-pages-menu__item${active ? ' is-active' : ''}`}
-              aria-current={active ? 'page' : undefined}
-              onClick={() => setOpen(false)}
-            >
-              {page.label}
-            </Link>
-          </li>
-        )
-      })}
-    </ul>
-  )
+  const current =
+    matchLabel(location.pathname, marketingPages) ?? `${flag} ${label}`
 
   return (
     <div ref={rootRef} className="site-pages-menu">
@@ -123,26 +76,29 @@ export default function SitePagesMenu() {
 
       {open ? (
         <div id={menuId} role="menu" className="site-pages-menu__panel">
-          {!onAdmin ? (
-            <div className="site-pages-menu__section">
-              <p className="site-pages-menu__heading">
-                {flag} {label} · 11 pages
-              </p>
-              {renderList(marketingPages, region)}
-            </div>
-          ) : null}
           <div className="site-pages-menu__section">
-            <p className="site-pages-menu__heading">Admin / App</p>
-            {renderList(ADMIN_PAGES, 'admin')}
+            <p className="site-pages-menu__heading">
+              {flag} {label} · {marketingPages.length} pages
+            </p>
+            <ul className="site-pages-menu__list">
+              {marketingPages.map((page) => {
+                const active = isActive(location.pathname, page.to)
+                return (
+                  <li key={page.to}>
+                    <Link
+                      role="menuitem"
+                      to={page.to}
+                      className={`site-pages-menu__item${active ? ' is-active' : ''}`}
+                      aria-current={active ? 'page' : undefined}
+                      onClick={() => setOpen(false)}
+                    >
+                      {page.label}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
-          {onAdmin ? (
-            <div className="site-pages-menu__section">
-              <p className="site-pages-menu__heading">
-                {flag} {label} marketing
-              </p>
-              {renderList(marketingPages, region)}
-            </div>
-          ) : null}
         </div>
       ) : null}
     </div>
