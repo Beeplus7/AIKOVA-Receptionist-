@@ -32,6 +32,8 @@ export default function OnboardingFlowPage() {
     const q = new URLSearchParams()
     q.set('region', region === 'africa' || region === 'eurozone' || region === 'uk' ? region : 'eurozone')
     if (step) q.set('step', step)
+    // Bust iframe HTML cache after artefact UX updates (Step 3 bot scrape, etc.)
+    q.set('v', '20261104-kb-scrape')
     return `${base}?${q.toString()}`
   }, [region, step])
 
