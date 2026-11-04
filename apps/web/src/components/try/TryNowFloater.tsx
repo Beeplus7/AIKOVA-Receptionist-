@@ -7,7 +7,7 @@ function shouldShow(pathname: string) {
   return true
 }
 
-/** Persistent Try now control — sends visitors to the trials hub. */
+/** Persistent Try now control — desktop/tablet only; mobile uses in-page CTAs. */
 export default function TryNowFloater() {
   const { pathname } = useLocation()
   if (!shouldShow(pathname)) return null
@@ -15,7 +15,7 @@ export default function TryNowFloater() {
   return (
     <Link
       to="/trials"
-      className="fixed z-[70] left-4 bottom-[88px] sm:left-6 sm:bottom-[76px] inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#0F172A] pl-2 pr-4 py-2 text-white shadow-[0_16px_40px_rgba(15,23,42,0.28)] hover:translate-y-[-1px] transition"
+      className="fixed z-[55] left-4 bottom-[88px] sm:left-6 sm:bottom-[76px] hidden md:inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-[#0F172A] pl-2 pr-4 py-2 text-white shadow-[0_16px_40px_rgba(15,23,42,0.28)] hover:translate-y-[-1px] transition"
       style={{ animation: 'pulseGlow 2.8s ease-in-out infinite' }}
       aria-label="Try AiKOVA trial templates"
     >

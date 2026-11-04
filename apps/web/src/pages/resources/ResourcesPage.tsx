@@ -648,7 +648,7 @@ export default function ResourcesPage() {
                   <div className="text-[12px] font-bold tracking-widest uppercase text-slate-400">{col.title}</div>
                   <div className="mt-4 space-y-2.5">
                     {col.links.map((l) => (
-                      <a key={l} href={({"Features":"/features","Solutions":"/solutions","Languages":"/languages","How It Works":"/how-it-works","How it Works":"/how-it-works","Pricing":"/pricing","Company":"/company","Customers":"/customers","Resources":"/resources","Demo":"/business","Playbooks":"/resources","Market Insights":"/resources","Compliance":"/resources","Growth Roadmap":"/resources","API Docs":"/resources"} as Record<string,string>)[l] ?? "#"} className="block text-[13px] text-slate-600 hover:text-slate-900 transition">
+                      <a key={l} href={({"Features":"/features","Solutions":"/solutions","Languages":"/languages","How It Works":"/how-it-works","How it Works":"/how-it-works","Pricing":"/pricing","Company":"/company","Customers":"/customers","Resources":"/resources","Demo":"/auth?mode=signup&region=africa&next=%2Fonboarding%2Fentrance","Playbooks":"/resources","Market Insights":"/resources","Compliance":"/resources","Growth Roadmap":"/resources","API Docs":"/resources"} as Record<string,string>)[l] ?? "#"} className="block text-[13px] text-slate-600 hover:text-slate-900 transition">
                         {l}
                       </a>
                     ))}

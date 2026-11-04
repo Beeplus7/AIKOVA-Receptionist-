@@ -66,7 +66,7 @@ export default function HowItWorksPage() {
               <a href="/languages" className="hover:text-slate-900 transition">Languages</a>
               <a href="/how-it-works" className="text-slate-900 font-semibold relative">How It Works<span className="absolute -bottom-1 left-0 w-full h-[3px] gradient-road rounded-full"></span></a>
               <a href="/pricing" className="hover:text-slate-900 transition">Pricing</a>
-              <a href="/business" className="hover:text-slate-900 transition">Demo</a>
+              <a href={startSetupUrl('africa')} className="hover:text-slate-900 transition">Demo</a>
             </nav>
           </div>
           <div className="flex items-center gap-3">
@@ -79,7 +79,7 @@ export default function HowItWorksPage() {
         </div>
         {mobileOpen && (
           <div className="lg:hidden border-t border-slate-200 bg-white px-6 py-5 flex flex-col gap-4 text-[15px] font-medium">
-            <a href="/features">Features</a><a href="/solutions">Solutions</a><a href="/languages">Languages</a><a className="font-bold" href="/how-it-works">How It Works</a><a href="/pricing">Pricing</a><a href="/business">Demo</a>
+            <a href="/features">Features</a><a href="/solutions">Solutions</a><a href="/languages">Languages</a><a className="font-bold" href="/how-it-works">How It Works</a><a href="/pricing">Pricing</a><a href={startSetupUrl('africa')}>Demo</a>
           </div>
         )}
       </header>
@@ -439,7 +439,7 @@ export default function HowItWorksPage() {
             </div>
             <div className="flex flex-wrap gap-3">
               <a href={startSetupUrl('africa')} className="inline-flex items-center justify-center rounded-full bg-slate-900 text-white px-7 py-3.5 text-[14px] font-semibold shadow-lg hover:bg-black transition">Start Now — Free</a>
-              <a href="/business" className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-7 py-3.5 text-[14px] font-semibold text-slate-800 hover:bg-slate-50 transition">▶ Watch 45s Demo</a>
+              <a href={startSetupUrl('africa')} className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-7 py-3.5 text-[14px] font-semibold text-slate-800 hover:bg-slate-50 transition">▶ Watch 45s Demo</a>
             </div>
           </div>
         </div>

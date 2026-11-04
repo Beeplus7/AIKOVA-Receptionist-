@@ -35,8 +35,9 @@
 * { font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; }
 h1,h2,h3 { font-family: Sora, Inter, sans-serif; letter-spacing: -0.02em; }
 
-html{ scroll-behavior: smooth; overflow-x: clip; }
-body{ background: var(--bg); color: var(--text); overflow-x: clip; }
+html{ scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
+body{ background: var(--bg); color: var(--text); overflow-x: hidden; max-width: 100%; }
+#root{ overflow-x: hidden; max-width: 100%; }
 
 @keyframes dropIn {
   0% { transform: translateY(-36px) scale(0.98); opacity: 0; }
@@ -558,8 +559,11 @@ body{ background: var(--bg); color: var(--text); overflow-x: clip; }
   left: 14px;
   z-index: 10000;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  /* Wrapper must not steal taps across the header strip */
+  pointer-events: none;
 }
 .marketing-region-switcher__track {
+  pointer-events: auto;
   display: inline-flex;
   align-items: center;
   gap: 2px;
@@ -596,15 +600,33 @@ body{ background: var(--bg); color: var(--text); overflow-x: clip; }
   .marketing-region-switcher {
     top: 10px;
     left: 10px;
-    right: 64px;
+    /* Do NOT set right: — that stretches a fixed box across the header and blocks CTAs */
+    max-width: calc(100vw - 56px);
   }
   .marketing-region-switcher__track {
     max-width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .marketing-region-switcher__btn {
     padding: 6px 9px;
     font-size: 11px;
+  }
+
+  /* Clear floating region + pages chrome so sticky header CTAs are tappable */
+  [data-safe-area-inset-root] > header[data-safe-area-sticky-top],
+  [data-safe-area-inset-root] > header.sticky {
+    padding-top: 52px;
+  }
+
+  /*
+   * On phones the pages menu used to sit top-right and steal taps from
+   * sticky-header "Get Started". Park it under the region pills instead.
+   */
+  .site-pages-menu {
+    top: 52px;
+    right: auto;
+    left: 10px;
   }
 }
 
@@ -615,9 +637,11 @@ body{ background: var(--bg); color: var(--text); overflow-x: clip; }
   right: 14px;
   z-index: 10000;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  pointer-events: none;
 }
 
 .site-pages-menu__trigger {
+  pointer-events: auto;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -665,6 +689,7 @@ body{ background: var(--bg); color: var(--text); overflow-x: clip; }
 }
 
 .site-pages-menu__panel {
+  pointer-events: auto;
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
@@ -715,14 +740,22 @@ body{ background: var(--bg); color: var(--text); overflow-x: clip; }
 }
 
 @media (max-width: 640px) {
-  .site-pages-menu {
-    top: 10px;
-    right: 10px;
+  .site-pages-menu__label {
+    max-width: 7.5rem;
   }
 
-  .site-pages-menu__label {
-    max-width: 6.5rem;
+  .site-pages-menu__trigger {
+    min-height: 36px;
+    padding: 0 10px 0 9px;
+    font-size: 12px;
   }
+}
+
+/* Keep header Get Started above any leftover chrome */
+.marketing-header-cta {
+  position: relative;
+  z-index: 10001;
+  pointer-events: auto;
 }
 
 /* --- HTML artefact frames (EU pages 8–10 + onboarding) --- */

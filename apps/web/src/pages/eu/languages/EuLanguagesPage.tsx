@@ -128,7 +128,7 @@ export default function EuLanguagesPage() {
                 Languages <span className="text-[11px]">🇬🇧🇪🇺</span>
               </a>
               <a href="/eu/pricing" className="hover:text-slate-900 transition">Pricing</a>
-              <a href="/eu/demo" className="hover:text-slate-900 transition">Demo</a>
+              <a href={startSetupUrl("eurozone")} className="hover:text-slate-900 transition">Demo</a>
             </nav>
           </div>
 
@@ -155,7 +155,7 @@ export default function EuLanguagesPage() {
             <a href="/eu/solutions" onClick={() => setMobileOpen(false)} className="block">Solutions</a>
             <a href="/eu/languages" onClick={() => setMobileOpen(false)} className="block font-semibold text-slate-900">Languages 🇬🇧🇪🇺 (active)</a>
             <a href="/eu/pricing" onClick={() => setMobileOpen(false)} className="block">Pricing</a>
-            <a href="/eu/demo" onClick={() => setMobileOpen(false)} className="block">Demo</a>
+            <a href={startSetupUrl("eurozone")} onClick={() => setMobileOpen(false)} className="block">Demo</a>
           </div>
         )}
       </header>

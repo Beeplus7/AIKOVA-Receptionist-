@@ -14,7 +14,7 @@ const SITEMAP = [
   { n: 4, path: "/eu/languages", title: "Languages", desc: "8 languages 320M+ speakers Scouse Bavarian Marseille 94.2% accuracy", icon: "🗣️" },
   { n: 5, path: "/eu/how-it-works", title: "How It Works", desc: "3-step Connect Train Live Twilio GDPR RAG", icon: "⚙️" },
   { n: 6, path: "/eu/pricing", title: "Pricing", desc: "EUR €25 €79 €199 VAT Stripe SEPA vs Slang €275", icon: "💶" },
-  { n: 7, path: "/eu/demo", title: "Demo", desc: "Live Demo 3 channels Phone +44 WhatsApp Instagram GDPR consent", icon: "📞" },
+  { n: 7, path: "/auth?mode=signup&region=eurozone&next=%2Fonboarding%2Fentrance", title: "Demo", desc: "Live Demo 3 channels Phone +44 WhatsApp Instagram GDPR consent", icon: "📞" },
   { n: 8, path: "/eu/customers", title: "Customers", desc: "500+ businesses testimonials", icon: "🤝" },
   { n: 9, path: "/eu/resources", title: "Resources", desc: "Playbooks Restaurant Cafe Clinic Salon + GDPR Guide v2024.10", icon: "📚" },
   { n: 10, path: "/eu/company", title: "Company", desc: "Mission Map 1M+ Businesses €4.2T GDP 27 states", icon: "🏢" },

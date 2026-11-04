@@ -90,9 +90,9 @@ export default function CompanionGuideHost() {
   };
 
   return (
-    <div className="aikova-companion-host pointer-events-none fixed inset-0 z-[60]" aria-live="polite">
-      {/* Secondary floater left bottom */}
-      <div className="pointer-events-auto fixed left-4 sm:left-6 bottom-6 z-40 hidden sm:flex">
+    <div className="aikova-companion-host pointer-events-none fixed inset-0 z-[60] overflow-hidden" aria-live="polite">
+      {/* Secondary floater left bottom — desktop only */}
+      <div className="pointer-events-auto fixed left-4 sm:left-6 bottom-6 z-40 hidden md:flex">
         <button type="button" onClick={() => setIsOpen(true)} className="h-11 px-4 rounded-full bg-white border border-[#E2E8F0] shadow-[0_8px_24px_rgba(15,23,42,0.08)] flex items-center gap-2 text-[13px] font-medium hover:shadow-lg transition-shadow">
           <span className="h-6 w-6 rounded-full flex items-center justify-center text-white text-[12px]" style={{ background: GRADIENT }}>⚡</span>
           Setup in 5 mins — How?
@@ -100,9 +100,9 @@ export default function CompanionGuideHost() {
         </button>
       </div>
 
-      {/* Main Floater Button bottom right z-50 */}
-      <div className="pointer-events-auto fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-        <div className={`transition-all duration-300 ${showTooltip ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"} rounded-[16px] bg-white border border-[#E2E8F0] shadow-[0_16px_40px_rgba(15,23,42,0.12)] p-3.5 min-w-[260px] max-w-[280px]`}>
+      {/* Main Floater — hide on mobile so it never covers hero / CTA taps */}
+      <div className="pointer-events-auto fixed bottom-6 right-6 z-50 hidden md:flex flex-col items-end gap-3">
+        <div className={`transition-all duration-300 ${showTooltip ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"} rounded-[16px] bg-white border border-[#E2E8F0] shadow-[0_16px_40px_rgba(15,23,42,0.12)] p-3.5 min-w-[260px] max-w-[min(280px,calc(100vw-2rem))]`}>
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-[13px] font-bold leading-tight text-[#0F172A]">Click to open Companion Guide</p>

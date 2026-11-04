@@ -69,7 +69,7 @@ const Nav = ({ onAssess: _onAssess }: { onAssess: () => void }) => {
               <span className="absolute -bottom-1 left-0 w-full h-[2px] gradient-border rounded-full" />
             </a>
             <a href="/eu/pricing" className="hover:text-slate-900 transition">Pricing</a>
-            <a href="/eu/demo" className="hover:text-slate-900 transition">Demo</a>
+            <a href={startSetupUrl("eurozone")} className="hover:text-slate-900 transition">Demo</a>
           </nav>
         </div>
         <div className="flex items-center gap-3">
@@ -537,8 +537,8 @@ const VisualRoad = () => {
           <div className="text-[12px] text-slate-500 max-w-[420px]">Same road you shipped for EU rollout, now annotated: 2 min connect, 3 min brain, 1 min go-live. GDPR guardrails at every junction.</div>
         </div>
 
-        <div className="mt-10 relative rounded-[24px] border border-slate-200 bg-[#F8FAFC] p-6 lg:p-8 overflow-x-auto overflow-x-clip">
-          <div className="min-w-[900px]">
+        <div className="mt-10 relative rounded-[24px] border border-slate-200 bg-[#F8FAFC] p-4 sm:p-6 lg:p-8 overflow-x-auto max-w-full">
+          <div className="min-w-[640px] md:min-w-[900px]">
             {/* road line */}
             <div className="relative h-[160px]">
               <div className="absolute top-1/2 left-0 right-0 h-[6px] bg-gradient-to-r from-[#012169] via-[#2962FF] to-[#76FF03] rounded-full" />

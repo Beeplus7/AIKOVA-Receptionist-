@@ -232,7 +232,7 @@ export default function EuPricingPage() {
 
           <div className="flex items-center gap-2.5">
             <a
-              href="/eu/demo"
+              href={startSetupUrl("eurozone")}
               className="hidden md:inline-flex h-9 items-center rounded-full border border-[#E2E8F0] bg-white px-4 text-[13px] font-semibold hover:border-[#CBD5E1] transition"
             >
               Demo

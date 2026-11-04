@@ -20,6 +20,14 @@ export function startSetupUrl(region: RegionKey = 'eurozone') {
   return `${SETUP.auth}?mode=signup&region=${encodeURIComponent(region)}&next=${next}`
 }
 
+/** React Router location object — avoids flaky string `to` parsing with encoded `next`. */
+export function startSetupTo(region: RegionKey = 'eurozone') {
+  return {
+    pathname: SETUP.auth,
+    search: `?mode=signup&region=${encodeURIComponent(region)}&next=${encodeURIComponent(SETUP.entrance)}`,
+  } as const
+}
+
 export function signInUrl(region: RegionKey = 'eurozone', next = SETUP.entrance) {
   return `${SETUP.auth}?mode=signin&region=${encodeURIComponent(region)}&next=${encodeURIComponent(next)}`
 }

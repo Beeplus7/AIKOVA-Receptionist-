@@ -95,15 +95,26 @@ export default function SitePagesMenu() {
                 const active = isActive(location.pathname, page.to)
                 return (
                   <li key={page.to}>
-                    <Link
-                      role="menuitem"
-                      to={page.to}
-                      className={`site-pages-menu__item${active ? ' is-active' : ''}`}
-                      aria-current={active ? 'page' : undefined}
-                      onClick={() => setOpen(false)}
-                    >
-                      {page.label}
-                    </Link>
+                    {page.to.startsWith('/auth') ? (
+                      <a
+                        role="menuitem"
+                        href={page.to}
+                        className={`site-pages-menu__item${active ? ' is-active' : ''}`}
+                        onClick={() => setOpen(false)}
+                      >
+                        {page.label}
+                      </a>
+                    ) : (
+                      <Link
+                        role="menuitem"
+                        to={page.to}
+                        className={`site-pages-menu__item${active ? ' is-active' : ''}`}
+                        aria-current={active ? 'page' : undefined}
+                        onClick={() => setOpen(false)}
+                      >
+                        {page.label}
+                      </Link>
+                    )}
                   </li>
                 )
               })}

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import logoUrl from "./assets/32d4f05ae5209978-image_6A9BA612-7186-480D-9D5C-7EF8BE2260B7.jpeg";
 import AkcTierStrip from '../../components/AkcTierStrip';
-import { startSetupUrl, signInUrl } from '../../lib/setupFlow';
+import { startSetupTo, startSetupUrl, signInUrl } from '../../lib/setupFlow';
 
 const navLinks = [
   { label: 'Features', href: '/features' },
@@ -9,7 +10,7 @@ const navLinks = [
   { label: 'Languages', href: '/languages' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Trials', href: '/trials' },
-  { label: 'Demo', href: '/business' },
+  { label: 'Demo', href: startSetupUrl('africa') },
 ];
 
 const roadStops = [
@@ -49,7 +50,7 @@ export default function HomePage() {
   return (
     <div
       data-safe-area-inset-root
-      className="min-h-screen bg-white text-slate-900 overflow-x-clip antialiased"
+      className="min-h-screen w-full max-w-[100vw] bg-white text-slate-900 overflow-x-hidden antialiased"
       style={{ boxSizing: 'border-box', paddingTop: 'var(--safe-area-inset-top)' } as any}
     >
       {/* NAVIGATION */}
@@ -74,21 +75,20 @@ export default function HomePage() {
               ))}
             </nav>
 
-            <div className="hidden lg:flex items-center gap-3">
-              <a href={signInUrl('africa')} className="text-[13.5px] font-medium px-4 py-2">Sign in</a>
-              <a href="/trials" className="text-[13.5px] font-semibold px-4 py-2 text-slate-700 hover:text-slate-900">Try now</a>
-              <a href={startSetupUrl('africa')} className="px-5 py-2.5 rounded-full text-[13.5px] font-bold text-white shadow-[0_8px_20px_rgba(41,98,255,0.25)]" style={{ background: 'var(--gradient)' }}>
+            <div className="flex items-center gap-2 sm:gap-3 relative z-10 shrink-0">
+              <Link to={signInUrl('africa')} className="hidden sm:inline-flex text-[13.5px] font-medium px-3 py-2">Sign in</Link>
+              <Link to="/trials" className="hidden sm:inline-flex text-[13.5px] font-semibold px-3 py-2 text-slate-700 hover:text-slate-900">Try now</Link>
+              <Link to={startSetupTo('africa')} className="marketing-header-cta px-4 sm:px-5 py-2.5 rounded-full text-[13px] sm:text-[13.5px] font-bold text-white shadow-[0_8px_20px_rgba(41,98,255,0.25)]" style={{ background: 'var(--gradient)' }}>
                 Get Started
-              </a>
+              </Link>
+              <button onClick={() => setMobileOpen(v => !v)} className="lg:hidden w-10 h-10 rounded-full border border-slate-200 grid place-items-center" aria-label="Menu">
+                <div className="space-y-1.5">
+                  <div className="w-4 h-0.5 bg-slate-900 rounded" />
+                  <div className="w-4 h-0.5 bg-slate-900 rounded" />
+                  <div className="w-4 h-0.5 bg-slate-900 rounded" />
+                </div>
+              </button>
             </div>
-
-            <button onClick={() => setMobileOpen(v => !v)} className="lg:hidden w-10 h-10 rounded-full border border-slate-200 grid place-items-center">
-              <div className="space-y-1.5">
-                <div className="w-4 h-0.5 bg-slate-900 rounded" />
-                <div className="w-4 h-0.5 bg-slate-900 rounded" />
-                <div className="w-4 h-0.5 bg-slate-900 rounded" />
-              </div>
-            </button>
           </div>
 
           {mobileOpen && (
@@ -96,8 +96,8 @@ export default function HomePage() {
               {navLinks.map(l => (
                 <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)} className="block py-2 text-[14px] font-medium">{l.label}</a>
               ))}
-              <a href="/trials" onClick={() => setMobileOpen(false)} className="block py-2 text-[14px] font-semibold">Try now</a>
-              <a href={startSetupUrl('africa')} className="block text-center mt-2 px-5 py-3 rounded-full text-[14px] font-bold text-white" style={{ background: 'var(--gradient)' }}>Get Started</a>
+              <Link to="/trials" onClick={() => setMobileOpen(false)} className="block py-2 text-[14px] font-semibold">Try now</Link>
+              <Link to={startSetupTo('africa')} onClick={() => setMobileOpen(false)} className="block text-center mt-2 px-5 py-3 rounded-full text-[14px] font-bold text-white" style={{ background: 'var(--gradient)' }}>Get Started</Link>
             </div>
           )}
         </div>
@@ -116,9 +116,9 @@ export default function HomePage() {
 
             {/* LEFT */}
             <div className="relative z-10">
-              <div className="reveal inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-white shadow-sm">
-                <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#76FF03' }} />
-                <span className="text-[11px] font-bold tracking-widest text-slate-700 uppercase">Africa&apos;s Plug-and-Play AI Receptionist</span>
+              <div className="reveal inline-flex max-w-full flex-wrap items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-white shadow-sm">
+                <span className="w-2 h-2 rounded-full animate-pulse shrink-0" style={{ background: '#76FF03' }} />
+                <span className="text-[10px] sm:text-[11px] font-bold tracking-wide sm:tracking-widest text-slate-700 uppercase">Africa&apos;s Plug-and-Play AI Receptionist</span>
                 <span className="ml-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-900 text-white">NEW</span>
               </div>
 
@@ -132,24 +132,23 @@ export default function HomePage() {
                 Africa is open, uncategorized, social-first. <span className="font-semibold text-slate-900">AiKOVA adapts to any business in 10 mins</span> — voice, SMS, WhatsApp, Instagram, FB. No code. No training.
               </p>
 
-              <div className="reveal reveal-delay-3 mt-8 flex flex-wrap gap-3">
-                <a
-                  href={startSetupUrl('africa')}
+              <div className="mt-8 flex flex-wrap gap-3 relative z-20">
+                <Link
+                  to={startSetupTo('africa')}
                   id="assess-button-main-hero"
-                  className="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-bold text-white shadow-[0_12px_28px_rgba(41,98,255,0.3)] transition hover:translate-y-[-1px] overflow-hidden"
-                  style={{ background: 'var(--gradient)', animation: 'pulseGlow 2.8s infinite' }}
+                  className="group relative z-20 inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-bold text-white shadow-[0_12px_28px_rgba(41,98,255,0.3)] transition hover:translate-y-[-1px]"
+                  style={{ background: 'var(--gradient)' }}
                 >
-                  <span className="absolute inset-0 rounded-full pulse-ring border border-white/40 pointer-events-none" />
-                  <span className="relative">Get Started</span>
-                  <span className="relative transition group-hover:translate-x-0.5">→</span>
-                </a>
-                <a
-                  href="/trials"
+                  <span>Get Started</span>
+                  <span className="transition group-hover:translate-x-0.5">→</span>
+                </Link>
+                <Link
+                  to="/trials"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-semibold bg-[#0F172A] text-white hover:bg-[#1E293B] transition"
                 >
                   <span className="h-6 w-6 rounded-full grid place-items-center text-[12px] font-black text-[#0F172A]" style={{ background: 'linear-gradient(102deg,#00E5FF,#2962FF,#76FF03)' }}>▶</span>
                   Try now
-                </a>
+                </Link>
               </div>
 
               <div className="reveal reveal-delay-4 mt-8 flex flex-wrap items-center gap-3 text-[12px] font-medium text-slate-500">
@@ -180,13 +179,13 @@ export default function HomePage() {
             </div>
 
             {/* RIGHT - PHONE MOCKUP */}
-            <div className="relative lg:h-[620px] flex justify-center lg:justify-end">
+            <div className="relative lg:h-[620px] flex justify-center lg:justify-end overflow-hidden max-w-full">
               {/* glow behind phone */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full blur-[80px] opacity-20" style={{ background: 'var(--gradient)' }} />
+              <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(520px,100%)] h-[min(520px,100vw)] max-w-full rounded-full blur-[80px] opacity-20" style={{ background: 'var(--gradient)' }} />
 
-              <div className="relative w-[320px] sm:w-[360px]">
+              <div className="relative w-[min(320px,calc(100vw-2rem))] sm:w-[360px] max-w-full">
                 {/* phone frame */}
-                <div className="relative mx-auto w-[300px] h-[600px] rounded-[44px] bg-slate-900 p-[10px] shadow-[0_30px_80px_rgba(15,23,42,0.25)]">
+                <div className="relative mx-auto w-full max-w-[300px] h-[560px] sm:h-[600px] rounded-[44px] bg-slate-900 p-[10px] shadow-[0_30px_80px_rgba(15,23,42,0.25)]">
                   <div className="w-full h-full rounded-[34px] bg-[#F8FAFC] overflow-hidden flex flex-col">
                     {/* phone header */}
                     <div className="h-[86px] px-5 pt-6 pb-3 bg-white border-b border-slate-100">
@@ -529,7 +528,7 @@ export default function HomePage() {
             </div>
 
             <div className="reveal reveal-delay-4 mt-8 flex gap-3">
-              <a href="#demo" className="px-5 py-3 rounded-full text-[14px] font-bold text-white" style={{ background: 'var(--gradient)' }}>See Social Demo →</a>
+              <Link to={startSetupTo('africa')} className="px-5 py-3 rounded-full text-[14px] font-bold text-white" style={{ background: 'var(--gradient)' }}>See Social Demo →</Link>
               <a href="#road" className="px-5 py-3 rounded-full text-[14px] font-semibold border border-slate-200 bg-white">How it detects slang</a>
             </div>
           </div>
@@ -613,9 +612,9 @@ export default function HomePage() {
                   <h2 className="text-[28px] sm:text-[40px] font-extrabold leading-[0.95] tracking-[-0.03em] text-white">Ready to never miss a customer again?</h2>
                   <p className="mt-3 text-[14px] sm:text-[15px] leading-[1.5] text-white/80 max-w-[480px]">Plug in your website, Google Business, or menu. Go live in 10 mins. Free 14-day trial, no card.</p>
                 </div>
-                <div className="flex flex-wrap gap-3">
-                  <a href={startSetupUrl('africa')} className="px-6 py-3.5 rounded-full bg-white text-slate-900 text-[14px] font-bold shadow-[0_10px_24px_rgba(0,0,0,0.15)] hover:translate-y-[-1px] transition">Get Started →</a>
-                  <a href="/trials" className="px-6 py-3.5 rounded-full border border-white/40 text-white text-[14px] font-semibold hover:bg-white/10 transition">Try now</a>
+                <div className="flex flex-wrap gap-3 relative z-20">
+                  <Link to={startSetupTo('africa')} className="px-6 py-3.5 rounded-full bg-white text-slate-900 text-[14px] font-bold shadow-[0_10px_24px_rgba(0,0,0,0.15)] hover:translate-y-[-1px] transition">Get Started →</Link>
+                  <Link to="/trials" className="px-6 py-3.5 rounded-full border border-white/40 text-white text-[14px] font-semibold hover:bg-white/10 transition">Try now</Link>
                   <a href="#road" className="px-6 py-3.5 rounded-full bg-slate-900/20 backdrop-blur border border-white/20 text-white text-[14px] font-semibold hover:bg-slate-900/30 transition">Talk to Founder</a>
                 </div>
               </div>
@@ -667,7 +666,7 @@ export default function HomePage() {
                   <div className="text-[11px] font-bold tracking-widest uppercase text-slate-400">{col.title}</div>
                   <div className="mt-4 space-y-2.5">
                     {col.links.map(l => (
-                      <a key={l} href={({"Features":"/features","Solutions":"/solutions","Languages":"/languages","How It Works":"/how-it-works","How it Works":"/how-it-works","Pricing":"/pricing","Company":"/company","Customers":"/customers","Resources":"/resources","Demo":"/business","Business":"/business","Product":"/features","Developers":"/resources","About":"/company","About us":"/company","Blog":"/resources","Contact":"/get-started","Careers":"/company","Press":"/company","Founder Story":"/company","API Docs":"/resources","Playbooks":"/resources","Market Insights":"/resources","Compliance":"/resources","Growth Roadmap":"/resources","Case Studies":"/customers","Wall of Love":"/customers","Invoca Benchmark":"/customers","M-Pesa Billing":"/pricing","Salons":"/solutions","Clinics":"/solutions","Real Estate":"/solutions","E-commerce":"/solutions","Privacy":"/get-started","Terms":"/get-started","NDPA":"/get-started"} as Record<string,string>)[l] ?? "#"} className="block text-[13px] text-slate-600 hover:text-slate-900 transition">{l}</a>
+                      <a key={l} href={({"Features":"/features","Solutions":"/solutions","Languages":"/languages","How It Works":"/how-it-works","How it Works":"/how-it-works","Pricing":"/pricing","Company":"/company","Customers":"/customers","Resources":"/resources","Demo":"/auth?mode=signup&region=africa&next=%2Fonboarding%2Fentrance","Business":"/business","Product":"/features","Developers":"/resources","About":"/company","About us":"/company","Blog":"/resources","Contact":"/get-started","Careers":"/company","Press":"/company","Founder Story":"/company","API Docs":"/resources","Playbooks":"/resources","Market Insights":"/resources","Compliance":"/resources","Growth Roadmap":"/resources","Case Studies":"/customers","Wall of Love":"/customers","Invoca Benchmark":"/customers","M-Pesa Billing":"/pricing","Salons":"/solutions","Clinics":"/solutions","Real Estate":"/solutions","E-commerce":"/solutions","Privacy":"/get-started","Terms":"/get-started","NDPA":"/get-started"} as Record<string,string>)[l] ?? "#"} className="block text-[13px] text-slate-600 hover:text-slate-900 transition">{l}</a>
                     ))}
                   </div>
                 </div>

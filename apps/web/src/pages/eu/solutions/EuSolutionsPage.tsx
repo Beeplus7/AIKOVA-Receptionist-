@@ -137,7 +137,6 @@ const businesses: Biz[] = [
 ];
 
 export default function EuSolutionsPage(){
-  const [activeDemo, setActiveDemo] = useState<string | null>(null);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [assessOpen, setAssessOpen] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -183,7 +182,7 @@ export default function EuSolutionsPage(){
             </a>
             <a href="/eu/languages" className="hover:text-slate-900 text-slate-500 transition">Languages</a>
             <a href="/eu/pricing" className="hover:text-slate-900 text-slate-500 transition">Pricing</a>
-            <a href="/eu/demo" className="hover:text-slate-900 text-slate-500 transition">Demo</a>
+            <a href={startSetupUrl("eurozone")} className="hover:text-slate-900 text-slate-500 transition">Demo</a>
           </nav>
 
           <div className="flex items-center gap-2.5">
@@ -389,12 +388,12 @@ export default function EuSolutionsPage(){
 
                   <div className="mt-4 flex items-center justify-between">
                     <span className="text-[11px] font-bold tracking-widest text-slate-500">{b.stats}</span>
-                    <button
-                      onClick={()=>setActiveDemo(b.id)}
-                      className="h-8 px-3 rounded-full bg-slate-900 text-white text-[11px] font-bold tracking-wide hover:bg-black transition"
+                    <a
+                      href={startSetupUrl("eurozone")}
+                      className="h-8 px-3 rounded-full bg-slate-900 text-white text-[11px] font-bold tracking-wide hover:bg-black transition inline-flex items-center"
                     >
                       See Demo →
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -639,51 +638,6 @@ export default function EuSolutionsPage(){
           </div>
         </div>
       </footer>
-
-      {/* DEMO MODAL */}
-      {activeDemo && (
-        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm p-4 grid place-items-center" onClick={()=>setActiveDemo(null)}>
-          <div className="bg-white rounded-[24px] w-full max-w-[520px] overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.3)]" onClick={e=>e.stopPropagation()}>
-            {(() => {
-              const b = businesses.find(x=>x.id===activeDemo)!;
-              return (
-                <>
-                  <div className="h-[200px] relative overflow-hidden bg-slate-50">
-                    <img src={b.imageType==='high'? highStreetUrl : compositeUrl} alt={b.title} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-4 left-5 right-5 flex justify-between items-end text-white">
-                      <div>
-                        <div className="text-[11px] font-bold tracking-widest opacity-80">{b.flag} • {b.badge}</div>
-                        <div className="text-[24px] font-[800]">{b.title} Demo</div>
-                      </div>
-                      <button onClick={()=>setActiveDemo(null)} className="h-9 w-9 rounded-full bg-white text-slate-900 grid place-items-center">✕</button>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="rounded-2xl bg-[#F8FAFC] border border-slate-100 p-4">
-                      <div className="text-[11px] font-bold tracking-widest text-slate-400">AIKOVA FLOW</div>
-                      <div className="mt-2 text-[13px] font-semibold leading-[1.5]">{b.flow}</div>
-                      <div className="mt-3 flex gap-2">
-                        <span className="px-2.5 py-1 rounded-full bg-slate-900 text-white text-[11px] font-bold">EN • FR • DE</span>
-                        <span className="px-2.5 py-1 rounded-full bg-white border text-[11px] font-bold">GDPR Ready</span>
-                      </div>
-                    </div>
-                    <ul className="mt-4 space-y-2">
-                      {b.bullets.map(x=>(
-                        <li key={x} className="flex gap-2 text-[13px]"><span className="text-[#2962FF]">✓</span>{x}</li>
-                      ))}
-                    </ul>
-                    <div className="mt-6 grid grid-cols-2 gap-3">
-                      <button onClick={()=>setActiveDemo(null)} className="h-11 rounded-full border border-slate-200 font-bold text-[13px]">Close</button>
-                      <button onClick={()=>{ setActiveDemo(null); setAssessOpen(true); }} className="h-11 rounded-full bg-slate-900 text-white font-bold text-[13px]">Assess My Business →</button>
-                    </div>
-                  </div>
-                </>
-              )
-            })()}
-          </div>
-        </div>
-      )}
 
       {/* ASSESS MODAL */}
       {assessOpen && (

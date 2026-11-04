@@ -160,7 +160,7 @@ export default function FeaturesPage() {
               { label: "Solutions", href: "/solutions" },
               { label: "Languages", href: "/languages" },
               { label: "Pricing", href: "/pricing" },
-              { label: "Demo", href: "/business" },
+              { label: "Demo", href: startSetupUrl("africa") },
             ].map((l) => (
               <a
                 key={l.label}
@@ -182,7 +182,7 @@ export default function FeaturesPage() {
 
           <div className="flex items-center gap-3">
             <a
-              href="/business"
+              href={startSetupUrl("africa")}
               className="hidden rounded-full px-4 py-2 text-[13px] font-semibold text-slate-600 ring-1 ring-slate-200 hover:bg-slate-50 md:block"
             >
               Watch demo
@@ -759,7 +759,7 @@ export default function FeaturesPage() {
                     <a href={startSetupUrl("africa")} className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[14px] font-bold text-slate-900 shadow-[0_12px_24px_rgba(0,0,0,0.15)] transition hover:translate-y-[-1px]">
                       <Play className="h-4 w-4 fill-slate-900" /> Open No.1 Hero
                     </a>
-                    <a href="/business" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 text-[14px] font-bold text-white ring-1 ring-white/20 backdrop-blur transition hover:bg-white/15">
+                    <a href="/solutions" className="inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 text-[14px] font-bold text-white ring-1 ring-white/20 backdrop-blur transition hover:bg-white/15">
                       View No.3 Solutions <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
@@ -818,7 +818,7 @@ export default function FeaturesPage() {
                   { n: "No.3 Solutions", href: "/solutions", highlight: true },
                   { n: "No.4 Languages", href: "/languages" },
                   { n: "No.5 Pricing", href: "/pricing" },
-                  { n: "No.6 Demo", href: "/business" },
+                  { n: "No.6 Demo", href: startSetupUrl("africa") },
                   { n: "No.7 Social Proof", href: "/customers" },
                   { n: "No.8 Integrations", href: "/resources" },
                   { n: "No.9 Security", href: "/company" },

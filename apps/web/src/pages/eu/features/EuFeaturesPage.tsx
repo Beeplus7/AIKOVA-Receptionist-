@@ -767,7 +767,7 @@ export default function EuFeaturesPage() {
                 <div><a href="/eu/solutions" className="hover:text-white transition">No.3 Solutions • Industries</a></div>
                 <div><a href="/eu/languages" className="hover:text-white transition">No.4 Languages • 12+ 🇪🇺</a></div>
                 <div><a href="/eu/pricing" className="hover:text-white transition">No.5 Pricing • SEPA</a></div>
-                <div><a href="/eu/demo" className="hover:text-white transition">No.6 Demo • Live Dashboard</a></div>
+                <div><a href={startSetupUrl("eurozone")} className="hover:text-white transition">No.6 Demo • Live Dashboard</a></div>
               </div>
             </div>
 

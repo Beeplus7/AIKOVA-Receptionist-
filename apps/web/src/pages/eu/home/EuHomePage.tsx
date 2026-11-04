@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import logoImg from "./assets/32d4f05ae5209978-image_6A9BA612-7186-480D-9D5C-7EF8BE2260B7.jpeg";
 import catInfographic from "./assets/163f747c5cfd683f-image_20261029_220348.webp";
 import cafeWoman from "./assets/30772e30efff29d0-image_20261029_220348_1.webp";
 import highStreet from "./assets/dc1f95fe8cb8a990-image_20261029_220349.webp";
 import AkcTierStrip from "../../../components/AkcTierStrip";
-import { startSetupUrl } from "../../../lib/setupFlow";
+import { startSetupTo } from "../../../lib/setupFlow";
 
 // Types for persistence
 type Assessment = {
@@ -119,29 +120,28 @@ export default function EuHomePage(){
   };
 
   return (
-    <div data-safe-area-inset-root style={{boxSizing:"border-box", paddingTop:"var(--safe-area-inset-top)", background:"var(--bg)"}} className="min-h-screen w-full overflow-x-clip antialiased">
+    <div data-safe-area-inset-root style={{boxSizing:"border-box", paddingTop:"var(--safe-area-inset-top)", background:"var(--bg)"}} className="min-h-screen w-full max-w-[100vw] overflow-x-hidden antialiased">
       {/* Nav */}
       <header data-safe-area-sticky-top style={{top:"var(--safe-area-inset-top)"}} className="sticky z-50 border-b border-[var(--line)] bg-white/80 glass">
-        <div className="mx-auto max-w-[1280px] px-5 lg:px-8 h-[72px] flex items-center justify-between">
-          <a href="/eu" className="flex items-center gap-3">
-            <img src={logoImg} alt="AiKOVA logo" className="h-9 w-auto rounded-lg object-contain bg-white" />
-            <span className="font-[Fraunces] font-bold text-[22px] tracking-tight">AiKOVA</span>
+        <div className="mx-auto max-w-[1280px] px-4 sm:px-5 lg:px-8 h-[72px] flex items-center justify-between gap-2 min-w-0">
+          <Link to="/eu" className="flex items-center gap-2 sm:gap-3 min-w-0 shrink">
+            <img src={logoImg} alt="AiKOVA logo" className="h-9 w-auto rounded-lg object-contain bg-white shrink-0" />
+            <span className="font-[Fraunces] font-bold text-[20px] sm:text-[22px] tracking-tight truncate">AiKOVA</span>
             <span className="hidden md:inline-flex ml-2 text-[11px] tracking-[0.18em] uppercase font-semibold px-2.5 py-1 rounded-full bg-[#F1F5F9] text-[#334155] border">Eurozone</span>
-          </a>
+          </Link>
           <nav className="hidden lg:flex items-center gap-8 text-[14px] font-medium text-[#334155]">
             {["Features","Solutions","Languages","Pricing","Trials","Demo"].map(t=>(
-              <a key={t} href={({Features:"/eu/features",Solutions:"/eu/solutions",Languages:"/eu/languages",Pricing:"/eu/pricing",Trials:"/trials",Demo:"/eu/demo"} as Record<string,string>)[t] ?? `#${t.toLowerCase()}`} className="hover:text-black transition">{t}</a>
+              <Link key={t} to={({Features:"/eu/features",Solutions:"/eu/solutions",Languages:"/eu/languages",Pricing:"/eu/pricing",Trials:"/trials",Demo:startSetupTo('eurozone')} as Record<string, string | ReturnType<typeof startSetupTo>>)[t] ?? `#${t.toLowerCase()}`} className="hover:text-black transition">{t}</Link>
             ))}
           </nav>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 relative z-10 shrink-0">
             <div className="hidden md:flex items-center gap-1.5 rounded-full border border-[var(--line)] px-2.5 py-1.5 bg-white shadow-sm">
               <span className="text-[16px]">🇬🇧</span><span className="w-px h-4 bg-[var(--line)] mx-1" /><span className="text-[16px]">🇪🇺</span>
             </div>
-            <a href="/trials" className="hidden sm:inline-flex text-[14px] font-semibold text-[#334155] hover:text-black px-3">Try now</a>
-            <a href={startSetupUrl('eurozone')} id="assess-button-main-hero" className="gradient-brand relative inline-flex items-center justify-center rounded-full px-5 h-10 text-[14px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(41,98,255,0.6)] hover:shadow-[0_12px_28px_-10px_rgba(41,98,255,0.7)] transition-all hover:-translate-y-px active:translate-y-0 overflow-hidden" style={{animation:"pulseGlow 2.8s infinite"}}>
-              <span className="absolute inset-0 rounded-full pulse-ring border border-white/40 pointer-events-none" />
-              <span className="relative">Get Started →</span>
-            </a>
+            <Link to="/trials" className="hidden sm:inline-flex text-[14px] font-semibold text-[#334155] hover:text-black px-3">Try now</Link>
+            <Link to={startSetupTo('eurozone')} id="assess-button-main-hero" className="marketing-header-cta gradient-brand relative inline-flex items-center justify-center rounded-full px-4 sm:px-5 h-10 text-[13px] sm:text-[14px] font-semibold text-white shadow-[0_8px_20px_-8px_rgba(41,98,255,0.6)] hover:shadow-[0_12px_28px_-10px_rgba(41,98,255,0.7)] transition-all hover:-translate-y-px active:translate-y-0">
+              Get Started →
+            </Link>
           </div>
         </div>
       </header>
@@ -155,9 +155,9 @@ export default function EuHomePage(){
         <div className="mx-auto max-w-[1280px] px-5 lg:px-8 pt-10 lg:pt-16 pb-14 lg:pb-20 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
           {/* Left copy */}
           <div className="reveal in">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-white px-3 py-1.5 shadow-sm text-[12px] font-medium">
-              <span>🇬🇧</span><span className="h-3 w-px bg-[#E2E8F0]" />
-              <span className="uppercase tracking-[0.14em] text-[#334155]">UK Flag-Off • Eurozone Launch • London</span>
+            <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#E2E8F0] bg-white px-3 py-1.5 shadow-sm text-[11px] sm:text-[12px] font-medium flex-wrap">
+              <span>🇬🇧</span><span className="h-3 w-px bg-[#E2E8F0] shrink-0" />
+              <span className="uppercase tracking-[0.08em] sm:tracking-[0.14em] text-[#334155]">UK Flag-Off • Eurozone • London</span>
               <span className="hidden sm:inline-flex ml-2 rounded-full bg-[#0F172A] text-white px-2 py-0.5 text-[10px] tracking-wide">Supporting 1M+ businesses</span>
             </div>
 
@@ -176,18 +176,21 @@ export default function EuHomePage(){
               From The Garden Restaurant to High Street Clinic to Bloom Salon — <span className="font-semibold text-[#0F172A]">AiKOVA adapts to any British business in 10 mins</span>, like Africa but for Europe. 450M+ population, €12.5T GDP, GDPR ready.
             </p>
 
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a href={startSetupUrl('eurozone')} id="assess-button" className="gradient-brand relative inline-flex items-center justify-center rounded-full h-[48px] px-7 text-[15px] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(41,98,255,0.7)] hover:-translate-y-px active:translate-y-0 transition-all overflow-hidden" style={{animation:"pulseGlow 2.8s infinite"}}>
-                <span className="absolute inset-0 rounded-full pulse-ring border border-white/40 pointer-events-none" />
-                <span className="relative">Get Started →</span>
-              </a>
-              <a
-                href="/trials"
+            <div className="mt-7 flex flex-wrap gap-3 relative z-20">
+              <Link
+                to={startSetupTo('eurozone')}
+                id="assess-button"
+                className="relative z-20 gradient-brand inline-flex items-center justify-center rounded-full h-[48px] px-7 text-[15px] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(41,98,255,0.7)] hover:-translate-y-px active:translate-y-0 transition-all"
+              >
+                Get Started →
+              </Link>
+              <Link
+                to="/trials"
                 className="rounded-full h-[48px] px-6 text-[14px] font-semibold border border-[var(--line)] bg-[#0F172A] text-white hover:bg-[#1E293B] transition flex items-center gap-2"
               >
                 <span className="h-6 w-6 rounded-full grid place-items-center text-[12px] font-black text-[#0F172A]" style={{ background: 'linear-gradient(102deg,#00E5FF,#2962FF,#76FF03)' }}>▶</span>
                 Try now
-              </a>
+              </Link>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2 text-[12px] text-[#64748B]">
@@ -197,25 +200,25 @@ export default function EuHomePage(){
             </div>
 
             {/* Trust row */}
-            <div className="mt-8 grid grid-cols-3 gap-3 max-w-[520px]">
+            <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-3 max-w-[520px] w-full">
               {[
                 {k:"1M+", v:"London businesses"},
                 {k:"10 min", v:"Setup average"},
                 {k:"24/7", v:"Never misses call"},
               ].map(s=>(
-                <div key={s.k} className="rounded-2xl border bg-white p-4 shadow-sm">
-                  <div className="text-[22px] font-bold tracking-tight">{s.k}</div>
-                  <div className="text-[12px] text-[#64748B] mt-0.5">{s.v}</div>
+                <div key={s.k} className="rounded-2xl border bg-white p-3 sm:p-4 shadow-sm min-w-0">
+                  <div className="text-[18px] sm:text-[22px] font-bold tracking-tight">{s.k}</div>
+                  <div className="text-[11px] sm:text-[12px] text-[#64748B] mt-0.5 leading-snug">{s.v}</div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Right visual - hero phone mockup */}
-          <div className="relative lg:sticky lg:top-[96px]">
-            <div ref={heroPhoneRef} className="relative mx-auto w-full max-w-[520px]">
+          <div className="relative lg:sticky lg:top-[96px] min-w-0 max-w-full overflow-hidden">
+            <div ref={heroPhoneRef} className="relative mx-auto w-full max-w-[min(520px,100%)]">
               {/* soft blob */}
-              <div className="absolute -inset-8 -z-10 rounded-[32px] bg-gradient-to-br from-[#E0F2FE] via-white to-[#FCE7F3] blur-[18px]" />
+              <div className="pointer-events-none absolute -inset-4 sm:-inset-8 -z-10 rounded-[32px] bg-gradient-to-br from-[#E0F2FE] via-white to-[#FCE7F3] blur-[18px]" />
               
               <div className="relative rounded-[28px] bg-white p-2.5 shadow-[var(--shadow-card)] border border-[#E2E8F0]">
                 <div className="rounded-[20px] overflow-hidden bg-[#F8FAFC] relative">
@@ -526,8 +529,8 @@ export default function EuHomePage(){
                 <h3 className="mt-3 text-[24px] lg:text-[32px] leading-[0.95] font-bold max-w-[22ch]">Ready to never miss a customer from Camden to Camberwell? Assess your business now.</h3>
                 <p className="mt-2 text-[13px] text-[#475569] max-w-[52ch]">The Garden Restaurant, Brew & Bean, High Street Clinic, Bloom Salon — AiKOVA already speaks their language.</p>
               </div>
-              <a href={startSetupUrl("eurozone")}  className="gradient-brand rounded-full h-[48px] px-8 text-[14px] font-semibold text-white shadow hover:-translate-y-px transition">Get Started →
-              </a>
+              <Link to={startSetupTo("eurozone")} className="gradient-brand relative z-20 rounded-full h-[48px] px-8 text-[14px] font-semibold text-white shadow hover:-translate-y-px transition inline-flex items-center">Get Started →
+              </Link>
             </div>
           </div>
         </div>
@@ -607,10 +610,12 @@ export default function EuHomePage(){
                 </div>
               </div>
             </div>
-            <div className="p-5 flex justify-between items-center">
+            <div className="p-5 flex flex-wrap justify-between items-center gap-3">
               <div className="text-[13px] text-[#475569]">From Brew & Bean latte order to Bloom colour cut — one AI, 6 London categories.</div>
-              <a href="/trials" className="rounded-full border border-[var(--line)] px-4 h-9 text-[13px] font-semibold text-[#334155] inline-flex items-center hover:bg-[#F8FAFC]">Try now</a>
-              <a href={startSetupUrl("eurozone")} className="gradient-brand rounded-full px-5 h-9 text-[13px] font-semibold text-white inline-flex items-center">Get Started →</a>
+              <div className="flex flex-wrap gap-2">
+                <Link to="/trials" className="rounded-full border border-[var(--line)] px-4 h-9 text-[13px] font-semibold text-[#334155] inline-flex items-center hover:bg-[#F8FAFC]">Try now</Link>
+                <Link to={startSetupTo("eurozone")} className="gradient-brand rounded-full px-5 h-9 text-[13px] font-semibold text-white inline-flex items-center">Get Started →</Link>
+              </div>
             </div>
           </div>
         </div>

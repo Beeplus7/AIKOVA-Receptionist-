@@ -111,7 +111,7 @@ export default function PricingPage() {
                 <span className="absolute inset-0 rounded-full opacity-15" style={{ background: 'var(--gradient)' }} />
                 <span className="relative">Pricing</span>
               </a>
-              <a href="#demo" className="hover:text-slate-900 transition-colors">Demo</a>
+              <a href={startSetupUrl('africa')} className="hover:text-slate-900 transition-colors">Demo</a>
             </nav>
           </div>
 
@@ -142,7 +142,11 @@ export default function PricingPage() {
         {mobileOpen && (
           <div className="lg:hidden border-t border-slate-200 bg-white px-5 py-5 space-y-4">
             {["Features","Solutions","Languages","How It Works","Pricing","Demo"].map((l) => (
-              <a key={l} href="#pricing" className="block text-[15px] font-medium text-slate-700">{l}</a>
+              <a
+                key={l}
+                href={l === 'Demo' ? startSetupUrl('africa') : ({Features:'/features',Solutions:'/solutions',Languages:'/languages','How It Works':'/how-it-works',Pricing:'/pricing'} as Record<string,string>)[l] ?? '#pricing'}
+                className="block text-[15px] font-medium text-slate-700"
+              >{l}</a>
             ))}
             <a href={startSetupUrl('africa')} className="flex h-11 rounded-full text-white font-semibold items-center justify-center" style={{ background: 'var(--gradient)' }}>Start free trial — $0</a>
           </div>
@@ -694,7 +698,7 @@ export default function PricingPage() {
               <div key={col.h}>
                 <div className="text-[12px] font-bold tracking-widest uppercase text-slate-900">{col.h}</div>
                 <ul className="mt-4 space-y-2.5 text-[13px] text-slate-600">
-                  {col.l.map(it=> <li key={it}><a href={({"Features":"/features","Solutions":"/solutions","Languages":"/languages","How It Works":"/how-it-works","How it Works":"/how-it-works","Pricing":"/pricing","Company":"/company","Customers":"/customers","Resources":"/resources","Demo":"/business","Business":"/business","Product":"/features","Developers":"/resources","About":"/company","About us":"/company","Blog":"/resources","Contact":"/get-started","Careers":"/company","Press":"/company","Founder Story":"/company","API Docs":"/resources","Playbooks":"/resources","Market Insights":"/resources","Compliance":"/resources","Growth Roadmap":"/resources","Case Studies":"/customers","Wall of Love":"/customers","Invoca Benchmark":"/customers","M-Pesa Billing":"/pricing","Salons":"/solutions","Clinics":"/solutions","Real Estate":"/solutions","E-commerce":"/solutions","Privacy":"/get-started","Terms":"/get-started","NDPA":"/get-started"} as Record<string,string>)[it] ?? "#"} className="hover:text-slate-900 transition">{it}</a></li>)}
+                  {col.l.map(it=> <li key={it}><a href={({"Features":"/features","Solutions":"/solutions","Languages":"/languages","How It Works":"/how-it-works","How it Works":"/how-it-works","Pricing":"/pricing","Company":"/company","Customers":"/customers","Resources":"/resources","Demo":"/auth?mode=signup&region=africa&next=%2Fonboarding%2Fentrance","Business":"/business","Product":"/features","Developers":"/resources","About":"/company","About us":"/company","Blog":"/resources","Contact":"/get-started","Careers":"/company","Press":"/company","Founder Story":"/company","API Docs":"/resources","Playbooks":"/resources","Market Insights":"/resources","Compliance":"/resources","Growth Roadmap":"/resources","Case Studies":"/customers","Wall of Love":"/customers","Invoca Benchmark":"/customers","M-Pesa Billing":"/pricing","Salons":"/solutions","Clinics":"/solutions","Real Estate":"/solutions","E-commerce":"/solutions","Privacy":"/get-started","Terms":"/get-started","NDPA":"/get-started"} as Record<string,string>)[it] ?? "#"} className="hover:text-slate-900 transition">{it}</a></li>)}
                 </ul>
               </div>
             ))}

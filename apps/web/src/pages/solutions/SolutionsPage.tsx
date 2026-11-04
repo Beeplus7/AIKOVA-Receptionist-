@@ -159,7 +159,6 @@ const SOLUTIONS: Solution[] = [
 
 export default function SolutionsPage() {
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [activeDemo, setActiveDemo] = useState<string | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   // Slide-in observer
@@ -467,30 +466,17 @@ export default function SolutionsPage() {
                     </div>
 
                     <div className="mt-auto pt-5 flex items-center justify-between">
-                      <button
-                        onClick={() => setActiveDemo(activeDemo === sol.id ? null : sol.id)}
+                      <a
+                        href={startSetupUrl('africa')}
                         className="inline-flex items-center gap-2 h-10 px-4 rounded-full bg-slate-900 text-white text-[13px] font-semibold hover:bg-slate-800 transition"
                       >
                         {sol.cta} <ArrowRight className="w-4 h-4" />
-                      </button>
+                      </a>
                       <div className="text-[11px] font-medium text-slate-400 flex items-center gap-1.5">
                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Live demo
                       </div>
                     </div>
 
-                    {activeDemo === sol.id && (
-                      <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 animate-[cardDrop_0.4s_ease]">
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className="w-7 h-7 rounded-full bg-slate-900 grid place-items-center"><Phone className="w-4 h-4 text-white" /></div>
-                          <div className="text-[12px] font-bold text-slate-900">Incoming call • {sol.languages[0]} detected</div>
-                          <div className="ml-auto text-[10px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold">● LIVE</div>
-                        </div>
-                        <div className="space-y-2 text-[12.5px] leading-[1.5]">
-                          <div className="p-2.5 rounded-xl bg-slate-50 text-slate-600">“Ẹ ku owurọ, I want to book table for 4 tonight?”</div>
-                          <div className="p-2.5 rounded-xl bg-slate-900 text-white">“Ẹ ku owurọ! Yes, 4 people at 7pm? I have window seat. Confirm on WhatsApp?”</div>
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </article>
               );
@@ -599,9 +585,9 @@ export default function SolutionsPage() {
                 <a href={startSetupUrl('africa')} className="h-12 px-6 rounded-full bg-white text-slate-900 text-[14px] font-bold inline-flex items-center gap-2 hover:bg-slate-50 transition">
                   Build my AI now <ArrowRight className="w-4 h-4" />
                 </a>
-                <button className="h-12 px-6 rounded-full border border-white/20 text-white text-[14px] font-semibold inline-flex items-center gap-2 hover:bg-white/10 transition">
+                <a href={startSetupUrl('africa')} className="h-12 px-6 rounded-full border border-white/20 text-white text-[14px] font-semibold inline-flex items-center gap-2 hover:bg-white/10 transition">
                   <Globe className="w-4 h-4" /> Watch 45s demo
-                </button>
+                </a>
               </div>
               <div className="mt-6 flex items-center gap-6 text-[12px] text-slate-400 font-medium">
                 <span className="flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-white" /> No credit card</span>

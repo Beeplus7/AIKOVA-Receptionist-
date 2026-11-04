@@ -41,7 +41,7 @@ const sitemapPages = [
   { no: '04', path: '/languages', title: 'Languages With Images', desc: '12+ languages, local dialects', status: 'DONE' },
   { no: '05', path: '/how-it-works', title: 'How It Works', desc: '3 steps: connect, train, go live', status: 'DONE' },
   { no: '06', path: '/pricing', title: 'Pricing', desc: 'Pay per call, scale for Africa', status: 'DONE' },
-  { no: '07', path: '#live-demo', title: 'Demo (Live)', desc: 'This page — live AI receptionist', status: 'LIVE' },
+  { no: '07', path: '/auth?mode=signup&region=africa&next=%2Fonboarding%2Fentrance', title: 'Demo (Live)', desc: 'This page — live AI receptionist', status: 'LIVE' },
   { no: '08', path: '/customers', title: 'Customers', desc: 'Lagos, Nairobi, Accra case studies', status: 'DONE' },
   { no: '09', path: '/resources', title: 'Resources', desc: 'Guides, API docs, community', status: 'DONE' },
   { no: '10', path: '/company', title: 'Company', desc: 'Mission, team, Pan-African vision', status: 'DONE' },
@@ -150,7 +150,7 @@ export default function GetStartedPage() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href="#live-demo" className="hidden md:inline-flex gradient-btn text-white text-[13px] font-semibold px-5 h-9 rounded-full items-center">
+            <a href={startSetupUrl("africa")} className="hidden md:inline-flex gradient-btn text-white text-[13px] font-semibold px-5 h-9 rounded-full items-center">
               Start Live Demo
             </a>
             <button onClick={() => setMobileMenu(!mobileMenu)} className="lg:hidden w-9 h-9 rounded-full border border-slate-200 grid place-items-center">
@@ -169,7 +169,7 @@ export default function GetStartedPage() {
             <a href="/languages" className="block">Languages</a>
             <a href="/how-it-works" className="block">How It Works</a>
             <a href="/pricing" className="block">Pricing</a>
-            <a href="#live-demo" className="block font-bold">Demo (active)</a>
+            <a href={startSetupUrl("africa")} className="block font-bold">Demo</a>
             <a href="#contact" className="block">Contact</a>
           </div>
         )}
@@ -193,7 +193,7 @@ export default function GetStartedPage() {
                 Live demo call, contact our Lagos / Nairobi / Accra team, legal & trust built for 54 African countries. White theme constancy, torch of God.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#live-demo" onClick={(e)=>{e.preventDefault(); document.getElementById('live-demo')?.scrollIntoView({behavior:'smooth'})}} className="gradient-btn text-white font-semibold px-7 h-[46px] rounded-full inline-flex items-center gap-2">
+                <a href={startSetupUrl("africa")} className="gradient-btn text-white font-semibold px-7 h-[46px] rounded-full inline-flex items-center gap-2">
                   <span>Start Live Demo</span>
                   <span className="w-5 h-5 rounded-full bg-white/20 grid place-items-center">↗</span>
                 </a>
@@ -610,7 +610,7 @@ export default function GetStartedPage() {
               <div>
                 <div className="font-bold mb-3">Demo + Trust</div>
                 <div className="space-y-2 text-slate-600">
-                  <a href="#live-demo" className="block hover:text-slate-900">Live Demo</a>
+                  <a href={startSetupUrl("africa")} className="block hover:text-slate-900">Live Demo</a>
                   <a href="#legal" className="block hover:text-slate-900">Legal & Trust</a>
                   <a href="#contact" className="block hover:text-slate-900">Contact</a>
                   <a href="#sitemap" className="block hover:text-slate-900">Sitemap</a>
