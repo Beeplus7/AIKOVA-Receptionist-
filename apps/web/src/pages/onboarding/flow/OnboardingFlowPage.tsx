@@ -33,7 +33,7 @@ export default function OnboardingFlowPage() {
     q.set('region', region === 'africa' || region === 'eurozone' || region === 'uk' ? region : 'eurozone')
     if (step) q.set('step', step)
     // Bust iframe HTML cache after artefact UX updates (Step 3 bot scrape, etc.)
-    q.set('v', '20261104-kb-scrape')
+    q.set('v', '20261104-kb-links')
     return `${base}?${q.toString()}`
   }, [region, step])
 
